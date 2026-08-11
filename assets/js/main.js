@@ -1,26 +1,30 @@
 /* =========================================================
-   IMV Solutions — main.js
+   IMV SOLUTIONS — main.js
    ---------------------------------------------------------
    >>> CONFIGURAÇÃO: altere apenas o bloco CONFIG abaixo. <<<
    ========================================================= */
 
 const CONFIG = {
-  /* Cole aqui o link do seu evento no Calendly.
-     Exemplo: "https://calendly.com/imv-solutions/diagnostico-gratuito"
-     Enquanto estiver vazio ou com o valor de exemplo, a página exibe
-     automaticamente os canais de contato alternativos (WhatsApp / e-mail). */
-  calendlyUrl: "https://calendly.com/SEU-USUARIO/diagnostico-gratuito",
+  /* Link do evento no Calendly (reunião gratuita de 30 minutos). */
+  calendlyUrl: "https://calendly.com/contato-imv/30min",
 
-  /* Personalização visual do calendário (cores em hexadecimal, sem "#") */
+  /* Parâmetros de origem, para identificar de onde veio o agendamento. */
+  calendlyUtm: {
+    utm_source: "landing",
+    utm_medium: "site",
+    utm_content: "reuniao-gratuita-embed",
+  },
+
+  /* Cores do calendário, alinhadas à identidade IMV. */
   calendly: {
     backgroundColor: "ffffff",
-    textColor: "10202f",
-    primaryColor: "22705f",
+    textColor: "0f1a28",
+    primaryColor: "1d3b66",
     hideEventTypeDetails: false,
     hideGdprBanner: true,
   },
 
-  /* Altura do calendário em pixels (desktop) */
+  /* Altura do calendário em pixels. */
   calendlyHeight: 700,
 };
 
@@ -31,9 +35,7 @@ const CONFIG = {
 (function () {
   "use strict";
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------- Menu mobile ---------------- */
   const navToggle = document.getElementById("navToggle");
@@ -52,12 +54,8 @@ const CONFIG = {
       navToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
     });
 
-    // Fecha ao clicar em um link do menu
-    nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeNav);
-    });
+    nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
 
-    // Fecha com ESC ou ao voltar para desktop
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && nav.classList.contains("is-open")) {
         closeNav();
@@ -70,18 +68,16 @@ const CONFIG = {
     });
   }
 
-  /* ---------------- Sombra do header ao rolar ---------------- */
+  /* ---------------- Header ao rolar ---------------- */
   const header = document.getElementById("header");
 
   if (header) {
-    const onScroll = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
-    };
+    const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  /* ---------------- Animação de entrada das seções ---------------- */
+  /* ---------------- Revelação das seções ---------------- */
   const revealItems = document.querySelectorAll(".reveal");
 
   if (!("IntersectionObserver" in window) || prefersReducedMotion) {
@@ -91,67 +87,19 @@ const CONFIG = {
       (entries) => {
         entries.forEach((entry, index) => {
           if (!entry.isIntersecting) return;
-          // Pequeno atraso em cascata para itens que aparecem juntos
-          setTimeout(() => entry.target.classList.add("is-visible"), index * 70);
+          setTimeout(() => entry.target.classList.add("is-visible"), index * 60);
           revealObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
     );
 
     revealItems.forEach((el) => revealObserver.observe(el));
 
-    // Rede de segurança: se por algum motivo o observador não disparar
-    // (aba em segundo plano, renderização suspensa), o conteúdo aparece assim mesmo.
+    // Rede de segurança: o conteúdo aparece mesmo se o observador não disparar.
     window.addEventListener("load", () => {
-      setTimeout(() => {
-        revealItems.forEach((el) => el.classList.add("is-visible"));
-      }, 2500);
+      setTimeout(() => revealItems.forEach((el) => el.classList.add("is-visible")), 2500);
     });
-  }
-
-  /* ---------------- Contadores da seção de resultados ---------------- */
-  const counters = document.querySelectorAll(".stat__value[data-count]");
-
-  const runCounter = (el) => {
-    const target = Number(el.dataset.count) || 0;
-    const suffix = el.dataset.suffix || "";
-
-    if (prefersReducedMotion) {
-      el.textContent = target + suffix;
-      return;
-    }
-
-    const duration = 1400;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      // easeOutCubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-
-    requestAnimationFrame(tick);
-  };
-
-  if (counters.length) {
-    if (!("IntersectionObserver" in window)) {
-      counters.forEach(runCounter);
-    } else {
-      const counterObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            runCounter(entry.target);
-            counterObserver.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.5 }
-      );
-      counters.forEach((el) => counterObserver.observe(el));
-    }
   }
 
   /* ---------------- Link ativo na navegação ---------------- */
@@ -166,10 +114,7 @@ const CONFIG = {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           navLinks.forEach((link) => {
-            link.classList.toggle(
-              "is-active",
-              link.getAttribute("href") === "#" + entry.target.id
-            );
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
           });
         });
       },
@@ -191,24 +136,29 @@ const CONFIG = {
     if (container) {
       container.innerHTML = "";
       container.hidden = true;
+      container.style.minHeight = "0";
       container.classList.remove("is-loading");
     }
     if (fallback) fallback.hidden = false;
   };
 
   const isConfigured = (url) =>
-    typeof url === "string" &&
-    url.startsWith("https://calendly.com/") &&
-    !url.includes("SEU-USUARIO");
+    typeof url === "string" && url.startsWith("https://calendly.com/") && !url.includes("SEU-USUARIO");
 
   const buildCalendlyUrl = () => {
     const url = new URL(CONFIG.calendlyUrl);
     const c = CONFIG.calendly || {};
+
+    Object.entries(CONFIG.calendlyUtm || {}).forEach(([key, value]) => {
+      if (value) url.searchParams.set(key, value);
+    });
+
     if (c.backgroundColor) url.searchParams.set("background_color", c.backgroundColor);
     if (c.textColor) url.searchParams.set("text_color", c.textColor);
     if (c.primaryColor) url.searchParams.set("primary_color", c.primaryColor);
     url.searchParams.set("hide_event_type_details", c.hideEventTypeDetails ? "1" : "0");
     url.searchParams.set("hide_gdpr_banner", c.hideGdprBanner ? "1" : "0");
+
     return url.toString();
   };
 
@@ -216,17 +166,12 @@ const CONFIG = {
     if (!container) return;
 
     if (!isConfigured(CONFIG.calendlyUrl)) {
-      // Aviso apenas no console, para quem estiver configurando o site.
-      console.info(
-        "[IMV Solutions] Calendly ainda não configurado. " +
-          'Defina CONFIG.calendlyUrl em assets/js/main.js com o link do seu evento.'
-      );
       showFallback();
       return;
     }
 
     container.classList.add("is-loading");
-    container.textContent = "Carregando calendário…";
+    container.textContent = "Carregando agenda…";
 
     const widget = document.createElement("div");
     widget.className = "calendly-inline-widget";
@@ -239,7 +184,7 @@ const CONFIG = {
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
 
-    // Se o script não carregar (offline, bloqueador, rede), mostra os canais diretos.
+    // Se o script não carregar (offline, bloqueador, rede), mostra o botão direto.
     const timeout = setTimeout(showFallback, 10000);
 
     script.addEventListener("load", () => {
@@ -249,10 +194,7 @@ const CONFIG = {
       container.appendChild(widget);
 
       if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
-        window.Calendly.initInlineWidget({
-          url: buildCalendlyUrl(),
-          parentElement: widget,
-        });
+        window.Calendly.initInlineWidget({ url: buildCalendlyUrl(), parentElement: widget });
       }
     });
 
@@ -264,7 +206,7 @@ const CONFIG = {
     document.head.appendChild(script);
   };
 
-  // Só carrega o Calendly quando a seção se aproxima da tela (mais leve no primeiro acesso).
+  // Carrega a agenda só quando a seção se aproxima da tela.
   const bookingSection = document.getElementById("agendar");
 
   if (bookingSection && "IntersectionObserver" in window) {
@@ -274,7 +216,7 @@ const CONFIG = {
         bookingObserver.disconnect();
         initCalendly();
       },
-      { rootMargin: "400px 0px" }
+      { rootMargin: "500px 0px" }
     );
     bookingObserver.observe(bookingSection);
   } else {
