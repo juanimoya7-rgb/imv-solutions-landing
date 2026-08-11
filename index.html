@@ -39,17 +39,78 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://imv.solutions/#organizacao",
     "name": "IMV Solutions",
-    "description": "Consultoria em gestão empresarial para PMEs e startups. Estrutura, processos, finanças e crescimento.",
+    "alternateName": "IMV",
+    "url": "https://imv.solutions/",
+    "logo": "https://imv.solutions/assets/img/logo-imv-solutions.png",
+    "image": "https://imv.solutions/assets/img/og-image.jpg",
+    "description": "Consultoria em gestão empresarial para PMEs e startups. Estruturamos finanças, processos, comercial e presença digital com a metodologia CRESCER.",
     "slogan": "Estrutura para crescer. Gestão para evoluir.",
-    "areaServed": { "@type": "Place", "name": "Boituva e interior de São Paulo, Brasil" },
-    "serviceType": [
-      "Consultoria em gestão empresarial",
+    "email": "contato@imv.solutions",
+    "telephone": "+55-11-97662-3357",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Boituva",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Boituva" },
+      { "@type": "State", "name": "São Paulo" },
+      { "@type": "Country", "name": "Brasil" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/imv.solutions/",
+      "https://www.linkedin.com/company/imvsolutions/"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+55-11-97662-3357",
+      "email": "contato@imv.solutions",
+      "availableLanguage": ["Portuguese"]
+    },
+    "knowsAbout": [
+      "Gestão empresarial",
       "Gestão financeira",
-      "Estruturação de processos",
+      "Fluxo de caixa",
+      "Mapeamento de processos",
       "Crescimento comercial",
+      "Indicadores de desempenho",
       "Presença digital estratégica"
-    ]
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços IMV Solutions",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Raio-X Empresarial",
+            "description": "Diagnóstico estratégico que analisa a empresa nas sete dimensões da metodologia CRESCER e define prioridades de ação."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Programa de Implementação Estratégica",
+            "description": "Execução do diagnóstico: organização financeira, processos, sistemas, comercial e indicadores."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Acompanhamento de Crescimento",
+            "description": "Acompanhamento contínuo de indicadores, reuniões estratégicas e melhoria contínua."
+          }
+        }
+      ]
+    }
   }
   </script>
 </head>
