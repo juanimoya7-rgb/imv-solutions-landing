@@ -14,8 +14,8 @@
      --navy-900 é o azul exato do fundo do logo original, amostrado do arquivo.
      Assim as seções escuras vivem no mesmo mundo cromático da marca. */
   --navy:       #1D3B66;
-  --navy-900:   #061E40;
-  --navy-800:   #0E2A52;
+  --navy-900:   #001430;
+  --navy-800:   #082042;
   --navy-600:   #2C5691;
   --navy-400:   #5A7BA8;
 
@@ -405,7 +405,8 @@ a:hover { color: var(--gold); }
   background: var(--gold);
   transform: rotate(45deg);
 }
-.problems__close {
+.problems__close,
+.concepts__close {
   margin-top: var(--s-7);
   font-family: var(--f-display);
   font-size: clamp(1.15rem, 2vw, 1.5rem);
@@ -415,63 +416,8 @@ a:hover { color: var(--gold); }
   text-align: center;
   text-wrap: balance;
 }
-.problems__close strong { color: var(--gold); font-weight: 700; }
-
-/* ================= 03 · Solução ================= */
-.solution {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: start;
-}
-.solution__copy { display: flex; flex-direction: column; gap: var(--s-5); }
-.solution__copy h2 { font-size: var(--t-h2); }
-
-.solution__list {
-  display: grid;
-  gap: var(--s-3);
-  padding: var(--s-6);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--gold);
-  border-radius: var(--r);
-}
-.solution__list li {
-  display: flex; align-items: flex-start; gap: var(--s-3);
-  font-size: .97rem;
-  color: var(--ink);
-}
-.solution__list li::before {
-  content: "";
-  flex-shrink: 0;
-  width: 16px; height: 16px;
-  margin-top: .3em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A227' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.philosophy {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2);
-  margin-top: var(--s-8);
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--line);
-}
-.philosophy li {
-  display: flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-family: var(--f-display);
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--navy);
-}
-.philosophy li:not(:last-child)::after {
-  content: "";
-  width: 22px; height: 8px;
-  margin-left: var(--s-2);
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 8' fill='none' stroke='%23C9A227' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 4h21M18 1l3 3-3 3'/%3E%3C/svg%3E") center / contain no-repeat;
-}
+.problems__close strong,
+.concepts__close strong { color: var(--gold); font-weight: 700; }
 
 /* ================= 04 · CRESCER ================= */
 .sec--dark .sechead h2 {
@@ -578,122 +524,7 @@ a:hover { color: var(--gold); }
   background: var(--navy-400);
 }
 
-/* ================= 06 · Transformação ================= */
-.shifts {
-  display: grid;
-  gap: var(--s-3);
-  max-width: 900px;
-  margin-inline: auto;
-}
-.shifts li {
-  display: grid;
-  grid-template-columns: 1fr 44px 1fr;
-  align-items: center;
-  gap: var(--s-4);
-  padding: var(--s-5) var(--s-6);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  transition: border-color .25s var(--ease), transform .25s var(--ease);
-}
-.shifts li:hover { border-color: var(--gold-200); transform: translateX(3px); }
-.shifts__from {
-  font-size: 1.02rem;
-  color: var(--muted);
-  text-align: right;
-}
-.shifts li::after {
-  content: "";
-  grid-column: 2;
-  grid-row: 1;
-  width: 34px; height: 10px;
-  justify-self: center;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 10' fill='none' stroke='%23C9A227' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 5h30M27 1.5L30.5 5 27 8.5'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-.shifts__to {
-  grid-column: 3;
-  font-family: var(--f-display);
-  font-size: 1.06rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -.02em;
-}
-
-/* ================= 07 · Jornada ================= */
-.journey {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-5);
-}
-.stage {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-  padding: var(--s-7) var(--s-6);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--navy);
-  border-radius: var(--r);
-}
-.stage:first-child { border-top-color: var(--gold); }
-.stage__num {
-  font-family: var(--f-display);
-  font-size: 2.6rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -.04em;
-  color: var(--line);
-}
-.stage h3 { font-size: 1.5rem; }
-.stage__verb {
-  font-family: var(--f-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--gold);
-}
-.stage > p:last-child { font-size: .97rem; }
-
-.journey__flow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--s-4);
-  margin-top: var(--s-7);
-  font-family: var(--f-display);
-  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: var(--navy);
-}
-.journey__flow span { display: inline-flex; align-items: center; gap: var(--s-4); }
-.journey__flow span:not(:last-child)::after {
-  content: "";
-  width: 30px; height: 10px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 10' fill='none' stroke='%23C9A227' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 5h30M27 1.5L30.5 5 27 8.5'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* ================= 08/09/10 · Blocos de destaque ================= */
-.feature {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-}
-.feature--reverse .feature__copy { order: 2; }
-.feature__copy { display: flex; flex-direction: column; gap: var(--s-5); align-items: flex-start; }
-.feature__copy h2 { font-size: var(--t-h2); }
-
-.feature__panel {
-  padding: var(--s-7) var(--s-6);
-  background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .13);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--r);
-}
-.feature__panel h3 { font-size: var(--t-h3); margin-bottom: var(--s-5); }
-
+/* ================= Listas com marca de verificação ================= */
 /* Listas com marca de verificação */
 .ticks { display: grid; gap: var(--s-3); }
 .ticks li {
@@ -708,23 +539,6 @@ a:hover { color: var(--gold); }
   margin-top: .32em;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A227' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.ticks--dark li { color: rgba(255, 255, 255, .84); }
-
-/* Chips de escopo */
-.chips { display: flex; flex-wrap: wrap; gap: var(--s-3); align-content: start; }
-.chips li {
-  padding: 11px 20px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  font-family: var(--f-display);
-  font-size: .93rem;
-  font-weight: 500;
-  color: var(--navy);
-  transition: border-color .22s var(--ease), transform .22s var(--ease);
-}
-.chips li:hover { border-color: var(--gold); transform: translateY(-2px); }
-
 /* ================= 11 · Agendamento ================= */
 .booking {
   display: grid;
@@ -751,6 +565,7 @@ a:hover { color: var(--gold); }
   font-size: .95rem;
   line-height: 1.9;
 }
+.booking__contact .btn { margin: var(--s-4) 0 var(--s-4); }
 .booking__contact-title {
   font-family: var(--f-display);
   font-weight: 600;
@@ -959,14 +774,33 @@ a:hover { color: var(--gold); }
 .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* ================= 02 · Conceitos: financeiro estratégico ================= */
+/* Três blocos que definem o posicionamento. Grade intrinsecamente
+   responsiva: 3 → 2 → 1 coluna sem precisar de media query. */
+.concepts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--s-6);
+}
+.concept {
+  padding-top: var(--s-5);
+  border-top: 2px solid var(--gold);
+}
+.concept h3 {
+  font-size: 1.35rem;
+  margin-bottom: var(--s-3);
+}
+.concept p { font-size: .98rem; }
+
+/* ================= 05 · Camadas: variante de três colunas ================= */
+/* Colapsa para uma coluna pela regra de .pillars no bloco responsivo. */
+.pillars--3 { grid-template-columns: repeat(3, 1fr); }
+
 /* ================= Responsivo ================= */
 @media (max-width: 1040px) {
   .hero__inner { grid-template-columns: 1fr; }
   .hero__viz { max-width: 540px; }
-  .solution, .feature { grid-template-columns: 1fr; }
-  .feature--reverse .feature__copy { order: 0; }
   .pillars, .crescer { grid-template-columns: 1fr; }
-  .journey { grid-template-columns: 1fr; }
   .booking { grid-template-columns: 1fr; }
   .booking__aside { position: static; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
@@ -1001,16 +835,7 @@ a:hover { color: var(--gold); }
   .wrap { padding-inline: 20px; }
   .hero__ctas { width: 100%; }
   .hero__ctas .btn { width: 100%; }
-  .paths, .shifts li { grid-template-columns: 1fr; }
-  .shifts li { gap: var(--s-2); padding: var(--s-5); }
-  .shifts__from { text-align: left; }
-  .shifts li::after {
-    grid-column: 1; grid-row: 2;
-    justify-self: start;
-    transform: rotate(90deg);
-    margin: var(--s-1) 0;
-  }
-  .shifts__to { grid-column: 1; grid-row: 3; }
+  .paths { grid-template-columns: 1fr; }
   .pillar ul { grid-template-columns: 1fr; }
   .dim { grid-template-columns: 48px 1fr; gap: var(--s-4); }
   .dim__letter { font-size: 2.5rem; }

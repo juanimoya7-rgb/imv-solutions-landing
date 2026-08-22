@@ -5,14 +5,14 @@
    ========================================================= */
 
 const CONFIG = {
-  /* Link do evento no Calendly (reunião gratuita de 30 minutos). */
+  /* Link do evento no Calendly (conversa gratuita de 30 minutos). */
   calendlyUrl: "https://calendly.com/contato-imv/30min",
 
   /* Parâmetros de origem, para identificar de onde veio o agendamento. */
   calendlyUtm: {
     utm_source: "landing",
     utm_medium: "site",
-    utm_content: "reuniao-gratuita-embed",
+    utm_content: "conversa-gratuita-embed",
   },
 
   /* Cores do calendário, alinhadas à identidade IMV. */
