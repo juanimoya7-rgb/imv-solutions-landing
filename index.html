@@ -645,6 +645,366 @@
     <span class="wa__text">Falar no WhatsApp</span>
   </a>
 
+  <!-- ===================================================================
+       CAMPANHA FE26 — Feira do Empreendedor Sebrae, 19 a 22/10/2026.
+       Bloco autocontido (estilo + markup + script), prefixado .fe26-
+       para não colidir com assets/css/styles.css.
+       REMOVER DEPOIS DE 22/10/2026: apagar daqui até o fim deste bloco.
+       =================================================================== -->
+  <style>
+  .fe26-overlay{
+    --fe26-navy:#1D3B66; --fe26-deep:#001430; --fe26-tinta:#0F1A28;
+    --fe26-ouro:#C9A227; --fe26-cinza:#4E5D70; --fe26-claro:#8493A5;
+    --fe26-linha:#D8DEE6; --fe26-branco:#fff;
+
+    position:fixed; inset:0; z-index:9999;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    background:rgba(0,20,48,.58);
+    opacity:0; transition:opacity .22s ease;
+  }
+  .fe26-overlay.is-open{opacity:1}
+  .fe26-overlay[hidden]{display:none !important}
+
+  .fe26-card{
+    position:relative; width:100%; max-width:27rem;
+    max-height:min(88vh,44rem); overflow-y:auto; overscroll-behavior:contain;
+    background:var(--fe26-branco); color:var(--fe26-tinta);
+    border-top:3px solid var(--fe26-ouro);
+    box-shadow:0 18px 50px rgba(0,20,48,.4);
+    font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;
+    font-size:15px; line-height:1.5;
+    transform:translateY(10px); transition:transform .22s ease;
+  }
+  .fe26-overlay.is-open .fe26-card{transform:none}
+
+  .fe26-fechar{
+    position:absolute; top:10px; right:10px; z-index:2;
+    width:34px; height:34px; display:grid; place-items:center;
+    background:var(--fe26-branco); color:var(--fe26-cinza);
+    border:1px solid var(--fe26-linha); border-radius:50%;
+    font-size:19px; line-height:1; cursor:pointer; padding:0;
+  }
+  .fe26-fechar:hover{color:var(--fe26-tinta); border-color:var(--fe26-claro)}
+
+  .fe26-topo{background:var(--fe26-deep); padding:18px 20px 16px}
+  .fe26-selo{
+    display:inline-block;
+    font-family:'Archivo',sans-serif; font-size:.62rem; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:var(--fe26-deep); background:var(--fe26-ouro);
+    padding:4px 8px; border-radius:2px;
+  }
+  .fe26-topo h2{
+    font-family:'Archivo',sans-serif; font-size:1.3rem; font-weight:800;
+    line-height:1.12; letter-spacing:-.01em; color:var(--fe26-branco);
+    margin:11px 0 0;
+  }
+  .fe26-topo p{font-size:.92rem; color:rgba(255,255,255,.76); margin:7px 0 0}
+
+  .fe26-corpo{padding:18px 20px 20px}
+  .fe26-grid{display:grid; grid-template-columns:1fr 1fr; gap:11px}
+  .fe26-campo{margin-bottom:11px; min-width:0}
+  .fe26-campo label{
+    display:block; font-family:'Archivo',sans-serif;
+    font-size:.68rem; font-weight:600; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--fe26-cinza); margin-bottom:4px;
+  }
+  .fe26-card input,.fe26-card select{
+    width:100%; font-family:inherit; font-size:.98rem; color:var(--fe26-tinta);
+    background:var(--fe26-branco); border:1px solid var(--fe26-linha);
+    border-radius:3px; padding:10px 11px; margin:0;
+  }
+  .fe26-card input:focus-visible,.fe26-card select:focus-visible,
+  .fe26-card button:focus-visible{outline:2px solid var(--fe26-navy); outline-offset:1px}
+  .fe26-erro{color:#B3261E; font-size:.8rem; margin:4px 0 0}
+
+  .fe26-enviar{
+    width:100%; font-family:'Archivo',sans-serif; font-size:1rem; font-weight:700;
+    color:var(--fe26-branco); background:var(--fe26-deep);
+    border:none; border-radius:3px; padding:14px; cursor:pointer; margin-top:5px;
+  }
+  .fe26-enviar:disabled{opacity:.6; cursor:progress}
+  .fe26-aviso{font-size:.78rem; color:var(--fe26-claro); text-align:center; margin:9px 0 0}
+
+  .fe26-ok{padding:26px 20px 24px; text-align:center}
+  .fe26-ok h2{font-family:'Archivo',sans-serif; font-size:1.35rem; font-weight:800; margin:0}
+  .fe26-ok p{color:var(--fe26-cinza); margin:9px 0 0; font-size:.95rem}
+  .fe26-ok .fe26-enviar{margin-top:18px}
+
+  @media (max-width:560px){
+    .fe26-overlay{align-items:flex-end; padding:0}
+    .fe26-card{max-width:none; max-height:88vh}   /* deixa o site à mostra em cima */
+    .fe26-grid{grid-template-columns:1fr; gap:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fe26-overlay,.fe26-card{transition:none}
+  }
+  </style>
+
+  <div class="fe26-overlay" id="fe26-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fe26-titulo">
+    <div class="fe26-card" id="fe26-card">
+      <button type="button" class="fe26-fechar" id="fe26-fechar" aria-label="Fechar">&times;</button>
+
+      <div id="fe26-conteudo">
+        <div class="fe26-topo">
+          <span class="fe26-selo">FE26 · Feira do Empreendedor Sebrae</span>
+          <h2 id="fe26-titulo">Você sabe quanto sua empresa lucrou no mês passado?</h2>
+          <p>Deixe seu contato e a Isabella marca um diagnóstico financeiro de 45 minutos, online e sem custo.</p>
+        </div>
+
+        <div class="fe26-corpo">
+          <form id="fe26-form" novalidate>
+            <div class="fe26-grid">
+              <div class="fe26-campo">
+                <label for="fe26-nome">Nome</label>
+                <input type="text" id="fe26-nome" autocomplete="name" enterkeyhint="next">
+              </div>
+              <div class="fe26-campo">
+                <label for="fe26-telefone">Telefone</label>
+                <input type="tel" id="fe26-telefone" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" enterkeyhint="next">
+              </div>
+            </div>
+            <p class="fe26-erro" id="fe26-erro-contato" hidden>Preencha nome e telefone com DDD.</p>
+
+            <div class="fe26-grid">
+              <div class="fe26-campo">
+                <label for="fe26-email">E-mail</label>
+                <input type="text" id="fe26-email" inputmode="email" autocomplete="email" enterkeyhint="next">
+              </div>
+              <div class="fe26-campo">
+                <label for="fe26-empresa">Empresa</label>
+                <input type="text" id="fe26-empresa" autocomplete="organization" enterkeyhint="next">
+              </div>
+            </div>
+            <p class="fe26-erro" id="fe26-erro-dados" hidden>Preencha um e-mail válido e o nome da empresa.</p>
+
+            <div class="fe26-campo">
+              <label for="fe26-dor">Qual é a sua maior dor financeira hoje?</label>
+              <select id="fe26-dor">
+                <option value="">Selecione</option>
+                <option value="Não sei se a empresa dá lucro">Não sei se a empresa dá lucro</option>
+                <option value="O caixa aperta e não sei por quê">O caixa aperta e não sei por quê</option>
+                <option value="Não sei precificar / não conheço minha margem">Não sei precificar / não conheço a margem</option>
+                <option value="Perco horas com boleto, conciliação e cobrança">Perco horas com boleto e conciliação</option>
+                <option value="Preciso de crédito e não tenho relatório">Preciso de crédito e não tenho relatório</option>
+                <option value="Quero crescer e não sei se o financeiro aguenta">Quero crescer e não sei se o financeiro aguenta</option>
+              </select>
+              <p class="fe26-erro" id="fe26-erro-dor" hidden>Escolha uma opção.</p>
+            </div>
+
+            <div class="fe26-campo">
+              <label for="fe26-faturamento">Faturamento mensal</label>
+              <select id="fe26-faturamento">
+                <option value="">Prefiro não informar</option>
+                <option value="Até R$ 20 mil">Até R$ 20 mil</option>
+                <option value="R$ 20 mil a R$ 50 mil">R$ 20 mil a R$ 50 mil</option>
+                <option value="R$ 50 mil a R$ 100 mil">R$ 50 mil a R$ 100 mil</option>
+                <option value="R$ 100 mil a R$ 300 mil">R$ 100 mil a R$ 300 mil</option>
+                <option value="Acima de R$ 300 mil">Acima de R$ 300 mil</option>
+              </select>
+            </div>
+
+            <input type="text" id="fe26-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+
+            <button type="submit" class="fe26-enviar" id="fe26-btn">Quero meu diagnóstico gratuito</button>
+            <p class="fe26-aviso">Leva 40 segundos. Sem spam, sem ligação de vendas.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="fe26-ok" id="fe26-ok" hidden>
+        <h2 id="fe26-ok-titulo">Recebido!</h2>
+        <p id="fe26-ok-texto">A Isabella entra em contato pelo WhatsApp com dois horários para o seu diagnóstico.</p>
+        <button type="button" class="fe26-enviar" id="fe26-ok-btn">Conhecer a IMV Solutions</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    'use strict';
+
+    var ENDPOINT = '/api/lead-fe26';
+    var CHAVE_ENVIADO = 'imv-fe26-enviado';
+    var CHAVE_FILA = 'imv-fe26-fila';
+    var ATRASO = 900;   // ms antes de aparecer, para o visitante ver que chegou na IMV
+    var ATE = '2026-10-23';   // rede de segurança: depois desta data o anúncio não aparece mais
+
+    var overlay = document.getElementById('fe26-overlay');
+    if (!overlay) return;
+
+    var agora = new Date();
+    var limite = new Date(ATE + 'T23:59:59');
+    if (agora > limite) return;
+
+    var card = document.getElementById('fe26-card');
+    var form = document.getElementById('fe26-form');
+    var btn = document.getElementById('fe26-btn');
+    var ultimoFoco = null;
+
+    function guardou(chave){
+      try { return localStorage.getItem(chave) === '1'; } catch (e) { return false; }
+    }
+    function marca(chave){
+      try { localStorage.setItem(chave, '1'); } catch (e) {}
+    }
+
+    /* quem já deixou o contato não vê o anúncio de novo */
+    if (guardou(CHAVE_ENVIADO)) return;
+
+    function abre(){
+      ultimoFoco = document.activeElement;
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function(){ overlay.classList.add('is-open'); });
+      setTimeout(function(){ document.getElementById('fe26-nome').focus(); }, 240);
+    }
+
+    function fecha(){
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(function(){ overlay.hidden = true; }, 220);
+      if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+    }
+
+    document.getElementById('fe26-fechar').addEventListener('click', fecha);
+    document.getElementById('fe26-ok-btn').addEventListener('click', fecha);
+    overlay.addEventListener('mousedown', function(ev){
+      if (ev.target === overlay) fecha();
+    });
+    document.addEventListener('keydown', function(ev){
+      if (ev.key === 'Escape' && !overlay.hidden) fecha();
+      /* mantém o foco dentro do diálogo */
+      if (ev.key === 'Tab' && !overlay.hidden) {
+        var focaveis = card.querySelectorAll('button, input, select, a[href]');
+        var vivos = [];
+        for (var i = 0; i < focaveis.length; i++) {
+          if (focaveis[i].offsetParent !== null) vivos.push(focaveis[i]);
+        }
+        if (!vivos.length) return;
+        var primeiro = vivos[0], ultimo = vivos[vivos.length - 1];
+        if (ev.shiftKey && document.activeElement === primeiro) { ev.preventDefault(); ultimo.focus(); }
+        else if (!ev.shiftKey && document.activeElement === ultimo) { ev.preventDefault(); primeiro.focus(); }
+      }
+    });
+
+    /* contexto do QR: imv.solutions/?src=cracha&dia=21&por=isa */
+    function contexto(){
+      var q = {};
+      try { new URLSearchParams(location.search).forEach(function(v, k){ q[k] = v; }); } catch (e) {}
+      return {
+        origem: q.src || 'site',
+        dia: q.dia || '',
+        captou: q.por || ''
+      };
+    }
+
+    function digitos(s){ return String(s || '').replace(/\D/g, ''); }
+
+    function valida(){
+      var ok = true;
+      var nome = document.getElementById('fe26-nome').value.trim();
+      var tel = digitos(document.getElementById('fe26-telefone').value);
+      var email = document.getElementById('fe26-email').value.trim();
+      var empresa = document.getElementById('fe26-empresa').value.trim();
+      var dor = document.getElementById('fe26-dor').value;
+
+      var contatoOk = nome.length >= 2 && tel.length >= 10 && tel.length <= 13;
+      var dadosOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && empresa.length >= 2;
+
+      document.getElementById('fe26-erro-contato').hidden = contatoOk;
+      document.getElementById('fe26-erro-dados').hidden = dadosOk;
+      document.getElementById('fe26-erro-dor').hidden = !!dor;
+
+      if (!contatoOk || !dadosOk || !dor) ok = false;
+      return ok;
+    }
+
+    function coleta(){
+      var ctx = contexto();
+      return {
+        nome: document.getElementById('fe26-nome').value.trim(),
+        whatsapp: digitos(document.getElementById('fe26-telefone').value),
+        email: document.getElementById('fe26-email').value.trim(),
+        empresa: document.getElementById('fe26-empresa').value.trim(),
+        dor: document.getElementById('fe26-dor').value,
+        dor_detalhe: '',
+        faturamento: document.getElementById('fe26-faturamento').value,
+        origem: ctx.origem,
+        dia_feira: ctx.dia,
+        captado_por: ctx.captou,
+        enviado_em: new Date().toISOString()
+      };
+    }
+
+    function envia(lead){
+      return fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      }).then(function(r){
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r;
+      });
+    }
+
+    /* sem sinal: guarda e reenvia sozinho depois */
+    function leFila(){
+      try { return JSON.parse(localStorage.getItem(CHAVE_FILA) || '[]') || []; }
+      catch (e) { return []; }
+    }
+    function guardaFila(l){
+      try { localStorage.setItem(CHAVE_FILA, JSON.stringify(l)); } catch (e) {}
+    }
+    function escoaFila(){
+      var lista = leFila();
+      if (!lista.length) return;
+      var restantes = [];
+      Promise.all(lista.map(function(lead){
+        return envia(lead).catch(function(){ restantes.push(lead); });
+      })).then(function(){ guardaFila(restantes); });
+    }
+    window.addEventListener('online', escoaFila);
+    escoaFila();
+
+    function sucesso(lead, offline){
+      marca(CHAVE_ENVIADO);
+      document.getElementById('fe26-conteudo').hidden = true;
+      document.getElementById('fe26-ok').hidden = false;
+      document.getElementById('fe26-ok-titulo').textContent =
+        'Recebido, ' + lead.nome.split(' ')[0] + '!';
+      if (offline) {
+        document.getElementById('fe26-ok-texto').textContent =
+          'Sem sinal agora — seus dados ficaram salvos e são enviados sozinhos quando a conexão voltar. A Isabella entra em contato pelo WhatsApp.';
+      }
+      card.scrollTop = 0;
+    }
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if (document.getElementById('fe26-hp').value) return;   // bot
+      if (!valida()) return;
+
+      var lead = coleta();
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      envia(lead)
+        .then(function(){ sucesso(lead, false); })
+        .catch(function(){
+          var l = leFila();
+          l.push(lead);
+          guardaFila(l);
+          sucesso(lead, true);
+        });
+    });
+
+    setTimeout(abre, ATRASO);
+  })();
+  </script>
+  <!-- ======================= FIM DA CAMPANHA FE26 ======================= -->
+
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
