@@ -250,6 +250,13 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     console.error('erro ao gravar lead no Attio:', e.message);
     // 502 faz o formulário guardar o lead no aparelho e reenviar sozinho.
-    return res.status(502).json({ ok: false, erro: 'attio_indisponivel' });
+    // attio_status/detalhe são para diagnóstico: o visitante nunca os vê,
+    // o formulário só olha o código HTTP.
+    return res.status(502).json({
+      ok: false,
+      erro: 'attio_indisponivel',
+      attio_status: e.status || null,
+      detalhe: String(e.message || '').slice(0, 200)
+    });
   }
 };
