@@ -89,17 +89,29 @@ function chamaAttio(caminho, metodo, corpo, chave) {
   });
 }
 
-/* Procura empresa já existente pelo WhatsApp, para não duplicar o registro. */
+/* Procura empresa já existente pelo WhatsApp, para não duplicar o registro.
+   O filtro de phone-number aceita a forma curta e a aninhada conforme o caso;
+   tentamos as duas antes de desistir, porque falhar aqui gera registro duplicado. */
 function procuraPorWhatsapp(telefone, chave) {
-  return chamaAttio('/objects/companies/records/query', 'POST', {
-    filter: { whatsapp: { original_phone_number: telefone } },
-    limit: 1
-  }, chave).then(function (r) {
-    var lista = (r && r.data) || [];
-    return lista.length ? lista[0].id.record_id : null;
-  }).catch(function () {
-    return null;   // busca falhou: segue como lead novo, melhor duplicar que perder
-  });
+  var formas = [
+    { whatsapp: telefone },
+    { whatsapp: { original_phone_number: telefone } }
+  ];
+
+  function tenta(i) {
+    if (i >= formas.length) return Promise.resolve(null);
+    return chamaAttio('/objects/companies/records/query', 'POST', {
+      filter: formas[i],
+      limit: 1
+    }, chave).then(function (r) {
+      var lista = (r && r.data) || [];
+      return lista.length ? lista[0].id.record_id : null;
+    }).catch(function (e) {
+      console.error('busca por whatsapp falhou (forma ' + (i + 1) + '):', e.message);
+      return tenta(i + 1);   // sintaxe recusada: tenta a outra
+    });
+  }
+  return tenta(0);
 }
 
 module.exports = async function handler(req, res) {
@@ -172,6 +184,19 @@ module.exports = async function handler(req, res) {
     valores.faturamento_mensal = [{ option: faixa.opcao }];
   }
 
+  /* Numa empresa que já existe (prospecção da Isabella, por exemplo) só
+     acrescentamos o que o lead acabou de declarar. Estado do funil, pitch,
+     origem e contagem de toques ficam como estão — o formulário não pode
+     rebaixar quem já estava em "Reunião agendada". O resto vai todo na nota. */
+  var valoresUpdate = {
+    contato_nome: valores.contato_nome,
+    whatsapp: valores.whatsapp,
+    ultimo_toque: valores.ultimo_toque,
+    proximo_follow_up: valores.proximo_follow_up
+  };
+  if (email) valoresUpdate.email_contato = valores.email_contato;
+  if (faixa) valoresUpdate.faturamento_mensal = valores.faturamento_mensal;
+
   try {
     var existente = await procuraPorWhatsapp(telefone, chave);
     var registro;
@@ -180,7 +205,7 @@ module.exports = async function handler(req, res) {
       registro = await chamaAttio(
         '/objects/companies/records/' + existente,
         'PATCH',
-        { data: { values: valores } },
+        { data: { values: valoresUpdate } },
         chave
       );
     } else {
