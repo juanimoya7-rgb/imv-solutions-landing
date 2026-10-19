@@ -870,15 +870,14 @@
     var btn = document.getElementById('fe26-btn');
     var ultimoFoco = null;
 
-    function guardou(chave){
-      try { return localStorage.getItem(chave) === '1'; } catch (e) { return false; }
-    }
     function marca(chave){
       try { localStorage.setItem(chave, '1'); } catch (e) {}
     }
 
-    /* quem já deixou o contato não vê o anúncio de novo */
-    if (guardou(CHAVE_ENVIADO)) return;
+    /* Durante a feira o anúncio abre em TODA visita, inclusive para quem já
+       deixou o contato. Decisão comercial: são poucos dias e o alcance vale
+       mais que o incômodo. Para voltar a mostrar uma vez por pessoa, reponha:
+         try { if (localStorage.getItem(CHAVE_ENVIADO) === '1') return; } catch (e) {} */
 
     function abre(){
       ultimoFoco = document.activeElement;
