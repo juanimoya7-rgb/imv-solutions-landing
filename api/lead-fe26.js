@@ -36,20 +36,20 @@ var OPCAO = {
   }
 };
 
-/* Faturamento declarado → prioridade comercial, para a fila da noite.
-   As chaves são exatamente os values do <select> em /fe26. Comparação exata:
+/* Faixa declarada no formulário → opção do atributo "Faturamento mensal"
+   no Attio + prioridade comercial para a fila da noite.
+   As chaves são exatamente os values do <select> do anúncio. Comparação exata:
    cada faixa traz dois números no texto, então busca por trecho erra o tramo. */
-var PRIORIDADE_POR_FATURAMENTO = {
-  'Até R$ 20 mil': 'exploratoria',
-  'R$ 20 mil a R$ 50 mil': 'media',
-  'R$ 50 mil a R$ 100 mil': 'alta',
-  'R$ 100 mil a R$ 300 mil': 'maxima',
-  'Acima de R$ 300 mil': 'maxima'
+var FAIXAS = {
+  'Até R$ 20 mil':            { opcao: '36b5d3f5-9fdd-48d0-bc96-58c094ab1cdb', prioridade: 'exploratoria' },
+  'R$ 20 mil a R$ 50 mil':    { opcao: '71794a96-856d-410a-8abd-4fdc8cd00778', prioridade: 'media' },
+  'R$ 50 mil a R$ 100 mil':   { opcao: 'b034a734-ce55-4d6f-b8d5-f30ec16f5489', prioridade: 'alta' },
+  'R$ 100 mil a R$ 300 mil':  { opcao: '2da98cb0-1929-421b-acf9-9bc351f01ff4', prioridade: 'maxima' },
+  'Acima de R$ 300 mil':      { opcao: 'd814c882-98f7-46e8-b20b-f4a811ae67ea', prioridade: 'maxima' }
 };
 
-function prioridadePor(faturamento) {
-  var nivel = PRIORIDADE_POR_FATURAMENTO[String(faturamento || '').trim()];
-  return OPCAO.prioridade[nivel || 'sem_avaliar'];
+function faixaDe(faturamento) {
+  return FAIXAS[String(faturamento || '').trim()] || null;
 }
 
 function limpa(valor, max) {
@@ -142,6 +142,7 @@ module.exports = async function handler(req, res) {
   }
 
   var gancho = dor + (dorDetalhe ? ' — ' + dorDetalhe : '');
+  var faixa = faixaDe(faturamento);
 
   var valores = {
     name: [{ value: empresa }],
@@ -156,16 +157,19 @@ module.exports = async function handler(req, res) {
     tipo_registro: [{ option: OPCAO.tipo_prospecto }],
     oferta_objetivo: [{ option: OPCAO.oferta_a_definir }],
     objecion_principal: [{ option: OPCAO.objecao_nenhuma }],
-    prioridad_imv: [{ option: prioridadePor(faturamento) }],
+    prioridad_imv: [{ option: faixa ? OPCAO.prioridade[faixa.prioridade] : OPCAO.prioridade.sem_avaliar }],
     fecha_prospeccion: [{ value: hoje() }],
     ultimo_toque: [{ value: hoje() }],
     proximo_follow_up: [{ value: hoje() }],   // contato na mesma noite
     toque_numero: [{ value: 1 }]
   };
 
-  /* só envia o e-mail quando veio preenchido, para não apagar um já existente no PATCH */
+  /* só envia quando veio preenchido, para não apagar um valor já existente no PATCH */
   if (email) {
     valores.email_contato = [{ value: email }];
+  }
+  if (faixa) {
+    valores.faturamento_mensal = [{ option: faixa.opcao }];
   }
 
   try {
