@@ -64,7 +64,7 @@ const CONFIG = {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 1100) closeNav();
+      if (window.innerWidth > 1200) closeNav();
     });
   }
 
@@ -122,6 +122,123 @@ const CONFIG = {
     );
 
     sections.forEach((section) => navObserver.observe(section));
+  }
+
+  /* ---------------- Demonstração do IMV Vision ----------------
+     Sem JavaScript as abas não aparecem e todos os painéis ficam
+     empilhados (regra no CSS). Aqui elas passam a funcionar. */
+  const abas = Array.from(document.querySelectorAll('.vtabs [role="tab"]'));
+
+  if (abas.length) {
+    const painelDa = (aba) => document.getElementById(aba.getAttribute("aria-controls"));
+
+    const ativar = (aba, moverFoco) => {
+      abas.forEach((a) => {
+        const selecionada = a === aba;
+        a.setAttribute("aria-selected", String(selecionada));
+        a.tabIndex = selecionada ? 0 : -1;
+
+        const painel = painelDa(a);
+        if (painel) {
+          painel.hidden = !selecionada;
+          painel.classList.toggle("is-active", selecionada);
+        }
+      });
+      if (moverFoco) aba.focus();
+    };
+
+    abas.forEach((aba, i) => {
+      aba.addEventListener("click", () => ativar(aba, false));
+
+      aba.addEventListener("keydown", (e) => {
+        const passos = { ArrowRight: 1, ArrowLeft: -1 };
+
+        if (e.key in passos) {
+          e.preventDefault();
+          ativar(abas[(i + passos[e.key] + abas.length) % abas.length], true);
+        } else if (e.key === "Home") {
+          e.preventDefault();
+          ativar(abas[0], true);
+        } else if (e.key === "End") {
+          e.preventDefault();
+          ativar(abas[abas.length - 1], true);
+        }
+      });
+    });
+  }
+
+  /* ---------------- Simulação do IMV Vision ----------------
+     Função pura sobre o mês fechado de referência, como no produto:
+     mesma entrada, mesma saída. O baseline vem nos data- do HTML, que
+     sai do mesmo dataset dos gráficos — assim o cenário nunca
+     discorda do resto da tela. */
+  const sim = document.querySelector(".vsim");
+  const faixaSim = document.getElementById("vsim-range");
+
+  if (sim && faixaSim) {
+    const base = {
+      receitaLiquida: Number(sim.dataset.rl),
+      lucroBruto: Number(sim.dataset.lb),
+      despesas: Number(sim.dataset.opex),
+      depreciacao: Number(sim.dataset.da),
+      financeiro: Number(sim.dataset.fin),
+      impostos: Number(sim.dataset.imp),
+      caixa: Number(sim.dataset.caixa),
+      custoFixo: Number(sim.dataset.fixo),
+    };
+
+    /* Margem de contribuição: o que sobra de cada real de receita depois
+       dos custos variáveis. É o divisor do retorno necessário. */
+    const contribuicao = base.lucroBruto / base.receitaLiquida;
+
+    const MENOS = "−";
+    const mil = (n) => Math.round(Math.abs(n)).toLocaleString("pt-BR");
+    const brl = (n) => (n < 0 ? MENOS : "") + "R$ " + mil(n);
+    const umaCasa = (n) => Math.abs(n).toFixed(1).replace(".", ",");
+    const pct = (v) => umaCasa(v * 100) + "%";
+    const delta = (valor, texto) => (valor === 0 ? "—" : (valor > 0 ? "+" : MENOS) + texto);
+
+    const escrever = (id, texto) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = texto;
+    };
+
+    const margemBase =
+      (base.lucroBruto - base.despesas - base.depreciacao + base.financeiro - base.impostos) /
+      base.receitaLiquida;
+    const mesesBase = base.caixa / base.custoFixo;
+
+    const recalcular = () => {
+      const economia = Math.round(base.despesas * (Number(faixaSim.value) / 100));
+
+      const despesas = base.despesas - economia;
+      const ebitda = base.lucroBruto - despesas;
+      /* Lucro presumido: o imposto incide sobre a receita, não sobre o
+         resultado. A economia de custo chega inteira ao lucro. */
+      const lucro = ebitda - base.depreciacao + base.financeiro - base.impostos;
+      const margem = lucro / base.receitaLiquida;
+      const custoFixo = base.custoFixo - economia;
+      const meses = base.caixa / custoFixo;
+
+      escrever("vsim-pct", faixaSim.value + "%");
+      escrever("vsim-opex", brl(despesas));
+      escrever("vsim-eco", economia === 0 ? "—" : brl(-economia));
+      escrever("vsim-ebitda", brl(ebitda));
+      escrever("vsim-debitda", delta(economia, brl(economia)));
+      escrever("vsim-lucro", brl(lucro));
+      escrever("vsim-dlucro", delta(economia, brl(economia)));
+      escrever("vsim-margem", pct(margem));
+      escrever("vsim-dmargem", delta(economia, umaCasa((margem - margemBase) * 100) + " p.p."));
+      escrever("vsim-meses", umaCasa(meses));
+      escrever("vsim-dmeses", delta(economia, umaCasa(meses - mesesBase) + " meses"));
+      escrever("vsim-r-lucro", brl(lucro));
+      escrever("vsim-r-margem", pct(margem));
+      escrever("vsim-ano", brl(economia * 12));
+      escrever("vsim-necessaria", brl(Math.round((economia * 12) / contribuicao)));
+    };
+
+    faixaSim.addEventListener("input", recalcular);
+    recalcular();
   }
 
   /* ---------------- Ano do rodapé ---------------- */

@@ -34,7 +34,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Cinzel:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://imv.solutions/#imv-vision",
+    "name": "IMV Vision",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Inteligência financeira para PMEs",
+    "operatingSystem": "Navegador web",
+    "url": "https://imv.solutions/#vision",
+    "inLanguage": "pt-BR",
+    "description": "Software proprietário da IMV Solutions que organiza, calcula e explica os indicadores financeiros da empresa a partir dos dados que ela já registra: DRE gerencial, fluxo de caixa, capital de giro, pontos de atenção e simulação de cenários. Somente leitura — não movimenta dinheiro.",
+    "featureList": [
+      "Score de Saúde Financeira com os cinco pilares abertos",
+      "DRE gerencial e orçado x realizado",
+      "Fluxo de caixa e capital de giro",
+      "Pontos de atenção por regras determinísticas, com evidência",
+      "Simulação de cenários sobre o mês fechado",
+      "Plano de ação ligado a indicadores reais"
+    ],
+    "provider": { "@id": "https://imv.solutions/#organizacao" },
+    "offers": {
+      "@type": "Offer",
+      "description": "Acesso incluído nos serviços de BPO Financeiro, Controladoria e CFO as a Service da IMV Solutions."
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=3">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -125,6 +153,7 @@
           <li><a href="#problema">O problema</a></li>
           <li><a href="#crescer">Metodologia</a></li>
           <li><a href="#camadas">Camadas</a></li>
+          <li><a href="#vision">IMV Vision</a></li>
         </ul>
         <div class="nav__acoes">
           <a href="https://vision.imv.solutions/login" class="btn btn--outline btn--sm nav__acesso">Acessar IMV Vision</a>
@@ -437,7 +466,944 @@
       </div>
     </section>
 
-    <!-- ===================== 06 · DOIS CAMINHOS DE ENTRADA ===================== -->
+    <!-- ===================== 06 · IMV VISION ===================== -->
+    <section class="sec sec--alt" id="vision">
+      <div class="wrap">
+        <header class="sechead reveal">
+          <p class="label">Software próprio · incluído nas três camadas</p>
+          <h2>IMV Vision: os números da sua empresa organizados, explicados e prontos para decidir.</h2>
+          <p class="sechead__lead">
+            Contratar BPO Financeiro, Controladoria ou CFO as a Service na IMV inclui o acesso
+            ao IMV Vision — o software que construímos para que a sua empresa veja o próprio
+            financeiro sem depender de planilha, de memória ou da nossa interpretação.
+          </p>
+        </header>
+
+        <!-- Fonte dos dados: implica a integração com o sistema de gestão da empresa -->
+        <div class="vflow reveal">
+          <ol class="vflow__steps">
+            <li>
+              <span class="vflow__num" aria-hidden="true">01</span>
+              <strong>O sistema que você já usa</strong>
+              <span>Onde a sua empresa lança o dia a dia continua sendo a fonte. Nada muda de lugar.</span>
+            </li>
+            <li>
+              <span class="vflow__num" aria-hidden="true">02</span>
+              <strong>Conciliação lançamento por lançamento</strong>
+              <span>Extrato bancário, contas a pagar e a receber conferidos antes de virar indicador.</span>
+            </li>
+            <li>
+              <span class="vflow__num" aria-hidden="true">03</span>
+              <strong>IMV Vision</strong>
+              <span>Lê, organiza, calcula e explica — com a origem de cada número à mão.</span>
+            </li>
+          </ol>
+          <p class="vflow__nota">
+            <strong>Somente leitura.</strong> O Vision não movimenta dinheiro, não altera lançamento
+            e não obriga a trocar de ferramenta. Ele se encaixa na operação que já existe.
+          </p>
+        </div>
+
+        <div class="vfeat">
+          <article class="vfeat__card reveal">
+            <h3>Todo número tem origem</h3>
+            <p>
+              Cada indicador mostra o período, quantos lançamentos entraram no cálculo e a data
+              da última leitura dos dados. Quando o seu contador perguntar de onde veio, a resposta
+              está na tela.
+            </p>
+          </article>
+          <article class="vfeat__card reveal">
+            <h3>Nenhum número inventado</h3>
+            <p>
+              Se o dado não permite uma conclusão, o Vision diz o que falta — em vez de mostrar
+              zero ou uma estimativa. Um indicador indisponível é informação; um número errado é
+              um prejuízo.
+            </p>
+          </article>
+          <article class="vfeat__card reveal">
+            <h3>Dado, leitura e recomendação separados</h3>
+            <p>
+              O que aconteceu, o que isso indica e o que avaliar são blocos distintos e sinalizados.
+              Você sempre sabe o que é fato e o que é interpretação.
+            </p>
+          </article>
+          <article class="vfeat__card reveal">
+            <h3>Pontos de atenção priorizados</h3>
+            <p>
+              Regras determinísticas, sem IA, varrem o resultado todo mês e apontam o que olhar
+              primeiro — cada apontamento com a evidência que o disparou e o nome da regra.
+            </p>
+          </article>
+          <article class="vfeat__card reveal">
+            <h3>Cenários antes da decisão</h3>
+            <p>
+              Reduzir custo, mudar preço, contratar: você vê o efeito na margem e no caixa antes de
+              executar. Cenário é cenário — a palavra "previsão" não aparece no produto.
+            </p>
+          </article>
+          <article class="vfeat__card reveal">
+            <h3>Mês fechado é mês fechado</h3>
+            <p>
+              O Vision nunca compara 15 dias com 30 e chama de queda, e nunca afirma nada sobre o mês
+              em curso. A data da última leitura real fica sempre visível.
+            </p>
+          </article>
+        </div>
+
+        <div class="vlayers reveal">
+          <article>
+            <p class="vlayers__tag">No BPO Financeiro</p>
+            <p>O Vision é onde a operação do dia a dia aparece organizada: caixa, contas a pagar e a receber, conciliação.</p>
+          </article>
+          <article>
+            <p class="vlayers__tag">Na Controladoria</p>
+            <p>É onde o dado vira informação: DRE gerencial, indicadores, orçado x realizado e pontos de atenção do mês.</p>
+          </article>
+          <article>
+            <p class="vlayers__tag">No CFO as a Service</p>
+            <p>É onde a decisão é simulada antes de ser tomada, e onde o plano de ação nasce ligado a um número real.</p>
+          </article>
+        </div>
+
+        <!-- ============ DEMONSTRAÇÃO ============ -->
+        <div class="vdemo reveal" id="vision-demo">
+          <header class="vdemo__bar">
+            <div class="vdemo__empresa">
+              <span class="vdemo__avatar" aria-hidden="true">FI</span>
+              <div>
+                <strong>Futebol Inc SaaS</strong>
+                <span>SaaS B2B · tecnologia para clubes de futebol</span>
+              </div>
+            </div>
+            <ul class="vdemo__meta">
+              <li><span>Mês de referência</span><strong>setembro/2026</strong></li>
+              <li><span>Última leitura dos dados</span><strong>01/10/2026 às 07:12</strong></li>
+              <li><span>Qualidade dos dados</span><strong>100/100</strong></li>
+            </ul>
+          </header>
+
+          <p class="vdemo__aviso">
+            <strong>Demonstração com empresa fictícia.</strong> A Futebol Inc SaaS foi criada pela IMV
+            para esta página: plataforma de gestão de desempenho, escalação e scouting vendida por assinatura para clubes, federações e centros de formação. Nenhum dado de cliente real aparece aqui —
+            e os números abaixo fecham entre si até o último real.
+          </p>
+
+          <div class="vtabs" role="tablist" aria-label="Telas do IMV Vision">
+            <button type="button" role="tab" id="vt-geral" aria-controls="vp-geral" aria-selected="true" tabindex="0">Visão Geral</button>
+            <button type="button" role="tab" id="vt-fin" aria-controls="vp-fin" aria-selected="false" tabindex="-1">Financeiro</button>
+            <button type="button" role="tab" id="vt-ctrl" aria-controls="vp-ctrl" aria-selected="false" tabindex="-1">Controladoria</button>
+            <button type="button" role="tab" id="vt-ins" aria-controls="vp-ins" aria-selected="false" tabindex="-1">Insights</button>
+            <button type="button" role="tab" id="vt-sim" aria-controls="vp-sim" aria-selected="false" tabindex="-1">Simulações</button>
+            <button type="button" role="tab" id="vt-plano" aria-controls="vp-plano" aria-selected="false" tabindex="-1">Plano de Ação</button>
+          </div>
+
+          <div class="vpanels">
+
+            <!-- ---------- Visão Geral ---------- -->
+            <section class="vpanel is-active" role="tabpanel" id="vp-geral" aria-labelledby="vt-geral" tabindex="0">
+              <p class="vpanel__q">Como está minha empresa?</p>
+
+              <div class="vscore">
+                <div class="vscore__num">
+                  <strong>75</strong>
+                  <span class="vchip vchip--boa">Boa</span>
+                  <p>Saúde Financeira</p>
+                  <small>Calculado com 5 de 5 pilares · cobertura 100%</small>
+                  <span class="vscore__meter" aria-hidden="true">
+                    <span class="vscore__track"></span>
+                    <span class="vscore__mark" style="left:75%"></span>
+                  </span>
+                  <span class="vscore__bands" aria-hidden="true"><i>Crítica</i><i>Atenção</i><i>Boa</i><i>Forte</i></span>
+                </div>
+                <div class="vscore__lado">
+                  <p class="vscore__frase">
+                    A receita líquida cresceu 3,5% no mês e 33,0% em doze meses.
+                    No mesmo período de três meses fechados, a margem líquida recuou 7,4 p.p.
+                  </p>
+                  <ul class="vpilares">
+                    <li>
+                      <span class="vpilares__nome">Rentabilidade<em>peso 25% · Margem líquida: 10,0%</em></span>
+                      <span class="vbar"><span class="vbar__fill" style="width:72.0%;background:#2C5691"></span></span>
+                      <span class="vpilares__pts">72</span>
+                    </li>
+                    <li>
+                      <span class="vpilares__nome">Geração de caixa<em>peso 25% · Conversão de lucro em caixa (12 meses): 81,1%</em></span>
+                      <span class="vbar"><span class="vbar__fill" style="width:73.0%;background:#2C5691"></span></span>
+                      <span class="vpilares__pts">73</span>
+                    </li>
+                    <li>
+                      <span class="vpilares__nome">Fôlego<em>peso 20% · Meses de caixa: 5,4 meses</em></span>
+                      <span class="vbar"><span class="vbar__fill" style="width:74.0%;background:#2C5691"></span></span>
+                      <span class="vpilares__pts">74</span>
+                    </li>
+                    <li>
+                      <span class="vpilares__nome">Ciclo financeiro<em>peso 15% · Ciclo financeiro: 12 dias</em></span>
+                      <span class="vbar"><span class="vbar__fill" style="width:81.0%;background:#2C5691"></span></span>
+                      <span class="vpilares__pts">81</span>
+                    </li>
+                    <li>
+                      <span class="vpilares__nome">Previsibilidade<em>peso 15% · Volatilidade da receita (coef. de variação): 9,9%</em></span>
+                      <span class="vbar"><span class="vbar__fill" style="width:80.0%;background:#2C5691"></span></span>
+                      <span class="vpilares__pts">80</span>
+                    </li>
+                  </ul>
+                  <p class="vpanel__nota">
+                    Cada pilar é normalizado por bandas explícitas, não por nota arbitrária. O score é
+                    aritmética determinística e versionada: não é nota de crédito, não é valuation e não
+                    compara setores diferentes.
+                  </p>
+                </div>
+              </div>
+
+              <ul class="vkpis">
+                <li>
+                  <span class="vkpis__nome">Receita líquida</span>
+                  <strong class="vkpis__val">R$ 441.558</strong>
+                  <span class="vkpis__var is-bom">+3,5%</span>
+                  <small>vs. agosto/2026</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Despesas totais</span>
+                  <strong class="vkpis__val">R$ 346.313</strong>
+                  <span class="vkpis__var is-ruim">+4,3%</span>
+                  <small>custos variáveis + operacionais</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Lucro líquido</span>
+                  <strong class="vkpis__val">R$ 44.284</strong>
+                  <span class="vkpis__var is-ruim">−1,5%</span>
+                  <small>vs. agosto/2026</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Margem líquida</span>
+                  <strong class="vkpis__val">10,0%</strong>
+                  <span class="vkpis__var is-ruim">−0,5 p.p.</span>
+                  <small>variação em pontos percentuais</small>
+                </li>
+              </ul>
+
+              <h4 class="vpanel__h">Principais pontos de atenção</h4>
+              <ul class="vatencao">
+                <li class="is-alerta">
+                  <span class="vchip vchip--alerta">Alerta</span>
+                  <strong>Margem líquida em queda</strong>
+                  <em>−7,4 p.p. em três meses fechados</em>
+                </li>
+                <li class="is-atencao">
+                  <span class="vchip vchip--atencao">Atenção</span>
+                  <strong>Despesas crescendo acima da receita</strong>
+                  <em>+15,4 p.p. de diferença no trimestre</em>
+                </li>
+                <li class="is-oportunidade">
+                  <span class="vchip vchip--oportunidade">Oportunidade</span>
+                  <strong>Prazo de recebimento acima do contratado</strong>
+                  <em>R$ 171.600 parados em recebíveis</em>
+                </li>
+              </ul>
+              <p class="vpanel__nota">Ordenados por gravidade, não por data. Cada um abre com a evidência que o disparou, na tela de Insights.</p>
+            </section>
+
+            <!-- ---------- Financeiro ---------- -->
+            <section class="vpanel" role="tabpanel" id="vp-fin" aria-labelledby="vt-fin" tabindex="0" hidden>
+              <p class="vpanel__q">O que aconteceu?</p>
+
+              <ul class="vkpis vkpis--4">
+                <li>
+                  <span class="vkpis__nome">Saldo de caixa</span>
+                  <strong class="vkpis__val">R$ 1.197.839</strong>
+                  <span class="vkpis__var is-bom">+R$ 13.075</span>
+                  <small>no fim de setembro/2026</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Meses de caixa</span>
+                  <strong class="vkpis__val">5,4</strong>
+                  <span class="vkpis__var is-neutro">banda 3 a 6</span>
+                  <small>saldo ÷ custo fixo mensal médio de R$ 219.953</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Conversão de lucro em caixa</span>
+                  <strong class="vkpis__val">81,1%</strong>
+                  <span class="vkpis__var is-neutro">12 meses</span>
+                  <small>R$ 561.916 de caixa operacional sobre R$ 692.837 de lucro</small>
+                </li>
+                <li>
+                  <span class="vkpis__nome">Fluxo de caixa líquido</span>
+                  <strong class="vkpis__val">R$ 13.075</strong>
+                  <span class="vkpis__var is-bom">setembro/2026</span>
+                  <small>operacional R$ 23.218 · investimento R$ 293 · financiamento −R$ 10.436</small>
+                </li>
+              </ul>
+
+              <figure class="vchart">
+                <figcaption>
+                  <h4>Como o resultado evoluiu nos 12 meses fechados</h4>
+                  <ul class="vlegend">
+                    <li><i style="background:#2C5691"></i>Receita líquida</li>
+                    <li><i style="background:#B35C2E"></i>Despesas totais</li>
+                    <li><i style="background:#00968F"></i>Lucro líquido</li>
+                  </ul>
+                </figcaption>
+                <div class="vchart__scroll vchart__scroll--wide">
+                  <svg viewBox="0 0 920 318" role="img" aria-labelledby="vg-evo-t">
+      <title id="vg-evo-t">Receita líquida, despesas totais e lucro líquido mês a mês, de out/2025 a set/2026</title>
+      <line x1="64" y1="252.0" x2="904" y2="252.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="54" y="256.0" text-anchor="end" class="vsvg__tick">0</text>
+      <line x1="64" y1="194.0" x2="904" y2="194.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="54" y="198.0" text-anchor="end" class="vsvg__tick">120</text>
+      <line x1="64" y1="136.0" x2="904" y2="136.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="54" y="140.0" text-anchor="end" class="vsvg__tick">240</text>
+      <line x1="64" y1="78.0" x2="904" y2="78.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="54" y="82.0" text-anchor="end" class="vsvg__tick">360</text>
+      <line x1="64" y1="20.0" x2="904" y2="20.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="54" y="24.0" text-anchor="end" class="vsvg__tick">480</text>
+      <text x="54" y="14" text-anchor="end" class="vsvg__unit">R$ mil</text>
+      <text x="64.0" y="272" text-anchor="middle" class="vsvg__tick">out/25</text>
+      <text x="140.4" y="272" text-anchor="middle" class="vsvg__tick">nov/25</text>
+      <text x="216.7" y="272" text-anchor="middle" class="vsvg__tick">dez/25</text>
+      <text x="293.1" y="272" text-anchor="middle" class="vsvg__tick">jan/26</text>
+      <text x="369.5" y="272" text-anchor="middle" class="vsvg__tick">fev/26</text>
+      <text x="445.8" y="272" text-anchor="middle" class="vsvg__tick">mar/26</text>
+      <text x="522.2" y="272" text-anchor="middle" class="vsvg__tick">abr/26</text>
+      <text x="598.5" y="272" text-anchor="middle" class="vsvg__tick">mai/26</text>
+      <text x="674.9" y="272" text-anchor="middle" class="vsvg__tick">jun/26</text>
+      <text x="751.3" y="272" text-anchor="middle" class="vsvg__tick">jul/26</text>
+      <text x="827.6" y="272" text-anchor="middle" class="vsvg__tick">ago/26</text>
+      <text x="904.0" y="272" text-anchor="middle" class="vsvg__tick">set/26</text>
+      <polyline points="64.0,91.5 140.4,87.4 216.7,92.8 293.1,81.4 369.5,77.3 445.8,68.7 522.2,64.6 598.5,60.9 674.9,56.8 751.3,50.9 827.6,45.9 904.0,38.6" fill="none" stroke="#2C5691" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="64.0,136.9 140.4,135.0 216.7,134.4 293.1,131.2 369.5,129.4 445.8,121.6 522.2,118.7 598.5,116.8 674.9,113.5 751.3,100.1 827.6,91.5 904.0,84.6" fill="none" stroke="#B35C2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="64.0,226.2 140.4,224.4 216.7,229.8 293.1,222.9 369.5,221.0 445.8,220.9 522.2,220.1 598.5,218.6 674.9,218.1 751.3,226.3 827.6,230.3 904.0,230.6" fill="none" stroke="#00968F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="904.0" cy="38.6" r="4.5" fill="#2C5691" stroke="#fff" stroke-width="2"/>
+      <text x="896.0" y="28.6" text-anchor="end" class="vsvg__val" fill="#2C5691">R$ 441.558</text>
+      <circle cx="904.0" cy="84.6" r="4.5" fill="#B35C2E" stroke="#fff" stroke-width="2"/>
+      <text x="896.0" y="74.6" text-anchor="end" class="vsvg__val" fill="#B35C2E">R$ 346.313</text>
+      <circle cx="904.0" cy="230.6" r="4.5" fill="#00968F" stroke="#fff" stroke-width="2"/>
+      <text x="896.0" y="220.6" text-anchor="end" class="vsvg__val" fill="#00968F">R$ 44.284</text>
+      <rect x="25.8" y="20" width="76.4" height="232" fill="transparent"><title>out/25 · Receita líquida R$ 332.112 · Despesas totais R$ 238.110 · Lucro líquido R$ 53.284</title></rect>
+      <rect x="102.2" y="20" width="76.4" height="232" fill="transparent"><title>nov/25 · Receita líquida R$ 340.603 · Despesas totais R$ 242.160 · Lucro líquido R$ 57.092</title></rect>
+      <rect x="178.5" y="20" width="76.4" height="232" fill="transparent"><title>dez/25 · Receita líquida R$ 329.281 · Despesas totais R$ 243.359 · Lucro líquido R$ 45.934</title></rect>
+      <rect x="254.9" y="20" width="76.4" height="232" fill="transparent"><title>jan/26 · Receita líquida R$ 352.869 · Despesas totais R$ 249.910 · Lucro líquido R$ 60.158</title></rect>
+      <rect x="331.3" y="20" width="76.4" height="232" fill="transparent"><title>fev/26 · Receita líquida R$ 361.360 · Despesas totais R$ 253.660 · Lucro líquido R$ 64.205</title></rect>
+      <rect x="407.6" y="20" width="76.4" height="232" fill="transparent"><title>mar/26 · Receita líquida R$ 379.287 · Despesas totais R$ 269.711 · Lucro líquido R$ 64.348</title></rect>
+      <rect x="484.0" y="20" width="76.4" height="232" fill="transparent"><title>abr/26 · Receita líquida R$ 387.778 · Despesas totais R$ 275.861 · Lucro líquido R$ 66.031</title></rect>
+      <rect x="560.4" y="20" width="76.4" height="232" fill="transparent"><title>mai/26 · Receita líquida R$ 395.326 · Despesas totais R$ 279.761 · Lucro líquido R$ 69.164</title></rect>
+      <rect x="636.7" y="20" width="76.4" height="232" fill="transparent"><title>jun/26 · Receita líquida R$ 403.818 · Despesas totais R$ 286.612 · Lucro líquido R$ 70.192</title></rect>
+      <rect x="713.1" y="20" width="76.4" height="232" fill="transparent"><title>jul/26 · Receita líquida R$ 416.083 · Despesas totais R$ 314.262 · Lucro líquido R$ 53.172</title></rect>
+      <rect x="789.5" y="20" width="76.4" height="232" fill="transparent"><title>ago/26 · Receita líquida R$ 426.462 · Despesas totais R$ 332.012 · Lucro líquido R$ 44.973</title></rect>
+      <rect x="865.8" y="20" width="76.4" height="232" fill="transparent"><title>set/26 · Receita líquida R$ 441.558 · Despesas totais R$ 346.313 · Lucro líquido R$ 44.284</title></rect>
+      <line x1="64" y1="252" x2="904" y2="252" stroke="#8493A5" stroke-width="1"/>
+    </svg>
+                </div>
+              </figure>
+
+              <div class="vchart__par">
+                <figure class="vchart">
+                  <figcaption><h4>Como o caixa se movimentou mês a mês</h4></figcaption>
+                  <div class="vchart__scroll">
+                    <svg viewBox="0 0 440 250" role="img" aria-labelledby="vg-flx-t">
+      <title id="vg-flx-t">Fluxo de caixa líquido por mês, de out/2025 a set/2026</title>
+      <line x1="46" y1="198.0" x2="428" y2="198.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="202.0" text-anchor="end" class="vsvg__tick">−20</text>
+      <line x1="46" y1="155.0" x2="428" y2="155.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="159.0" text-anchor="end" class="vsvg__tick">0</text>
+      <line x1="46" y1="112.0" x2="428" y2="112.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="116.0" text-anchor="end" class="vsvg__tick">20</text>
+      <line x1="46" y1="69.0" x2="428" y2="69.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="73.0" text-anchor="end" class="vsvg__tick">40</text>
+      <line x1="46" y1="26.0" x2="428" y2="26.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="30.0" text-anchor="end" class="vsvg__tick">60</text>
+      <text x="38" y="13" text-anchor="end" class="vsvg__unit">R$ mil</text>
+      <path d="M51 155.0 L51 78.5 Q51 74.5 55 74.5 L68.83333333333333 74.5 Q72.83333333333333 74.5 72.83333333333333 78.5 L72.83333333333333 155.0 Z" fill="#00968F"><title>out/25 · Fluxo de caixa líquido R$ 37.464 · Saldo no fim do mês R$ 857.464</title></path>
+      <text x="61.9" y="234" text-anchor="middle" class="vsvg__tick">out/25</text>
+      <path d="M82.83333333333333 155.0 L82.83333333333333 159.3 Q82.83333333333333 163.3 86.83333333333333 163.3 L100.66666666666666 163.3 Q104.66666666666666 163.3 104.66666666666666 159.3 L104.66666666666666 155.0 Z" fill="#B35C2E"><title>nov/25 · Fluxo de caixa líquido −R$ 3.856 · Saldo no fim do mês R$ 853.608</title></path>
+      <path d="M114.66666666666666 155.0 L114.66666666666666 90.6 Q114.66666666666666 86.6 118.66666666666666 86.6 L132.5 86.6 Q136.5 86.6 136.5 90.6 L136.5 155.0 Z" fill="#00968F"><title>dez/25 · Fluxo de caixa líquido R$ 31.827 · Saldo no fim do mês R$ 885.435</title></path>
+      <text x="125.6" y="234" text-anchor="middle" class="vsvg__tick">dez/25</text>
+      <path d="M146.5 155.0 L146.5 97.2 Q146.5 93.2 150.5 93.2 L164.33333333333334 93.2 Q168.33333333333334 93.2 168.33333333333334 97.2 L168.33333333333334 155.0 Z" fill="#00968F"><title>jan/26 · Fluxo de caixa líquido R$ 28.743 · Saldo no fim do mês R$ 914.178</title></path>
+      <path d="M178.33333333333331 155.0 L178.33333333333331 81.8 Q178.33333333333331 77.8 182.33333333333331 77.8 L196.16666666666666 77.8 Q200.16666666666666 77.8 200.16666666666666 81.8 L200.16666666666666 155.0 Z" fill="#00968F"><title>fev/26 · Fluxo de caixa líquido R$ 35.888 · Saldo no fim do mês R$ 950.066</title></path>
+      <text x="189.2" y="234" text-anchor="middle" class="vsvg__tick">fev/26</text>
+      <path d="M210.16666666666666 155.0 L210.16666666666666 86.3 Q210.16666666666666 82.3 214.16666666666666 82.3 L228 82.3 Q232 82.3 232 86.3 L232 155.0 Z" fill="#00968F"><title>mar/26 · Fluxo de caixa líquido R$ 33.809 · Saldo no fim do mês R$ 983.875</title></path>
+      <path d="M242 155.0 L242 75.8 Q242 71.8 246 71.8 L259.8333333333333 71.8 Q263.8333333333333 71.8 263.8333333333333 75.8 L263.8333333333333 155.0 Z" fill="#00968F"><title>abr/26 · Fluxo de caixa líquido R$ 38.676 · Saldo no fim do mês R$ 1.022.551</title></path>
+      <text x="252.9" y="234" text-anchor="middle" class="vsvg__tick">abr/26</text>
+      <path d="M273.8333333333333 155.0 L273.8333333333333 72.4 Q273.8333333333333 68.4 277.8333333333333 68.4 L291.66666666666663 68.4 Q295.66666666666663 68.4 295.66666666666663 72.4 L295.66666666666663 155.0 Z" fill="#00968F"><title>mai/26 · Fluxo de caixa líquido R$ 40.301 · Saldo no fim do mês R$ 1.062.852</title></path>
+      <path d="M305.66666666666663 155.0 L305.66666666666663 37.3 Q305.66666666666663 33.3 309.66666666666663 33.3 L323.49999999999994 33.3 Q327.49999999999994 33.3 327.49999999999994 37.3 L327.49999999999994 155.0 Z" fill="#00968F"><title>jun/26 · Fluxo de caixa líquido R$ 56.614 · Saldo no fim do mês R$ 1.119.466</title></path>
+      <text x="316.6" y="234" text-anchor="middle" class="vsvg__tick">jun/26</text>
+      <path d="M337.5 155.0 L337.5 71.6 Q337.5 67.6 341.5 67.6 L355.3333333333333 67.6 Q359.3333333333333 67.6 359.3333333333333 71.6 L359.3333333333333 155.0 Z" fill="#00968F"><title>jul/26 · Fluxo de caixa líquido R$ 40.634 · Saldo no fim do mês R$ 1.160.100</title></path>
+      <path d="M369.3333333333333 155.0 L369.3333333333333 106.0 Q369.3333333333333 102.0 373.3333333333333 102.0 L387.16666666666663 102.0 Q391.16666666666663 102.0 391.16666666666663 106.0 L391.16666666666663 155.0 Z" fill="#00968F"><title>ago/26 · Fluxo de caixa líquido R$ 24.664 · Saldo no fim do mês R$ 1.184.764</title></path>
+      <text x="380.3" y="234" text-anchor="middle" class="vsvg__tick">ago/26</text>
+      <path d="M401.16666666666663 155.0 L401.16666666666663 130.9 Q401.16666666666663 126.9 405.16666666666663 126.9 L418.99999999999994 126.9 Q422.99999999999994 126.9 422.99999999999994 130.9 L422.99999999999994 155.0 Z" fill="#00968F"><title>set/26 · Fluxo de caixa líquido R$ 13.075 · Saldo no fim do mês R$ 1.197.839</title></path>
+      <text x="93.8" y="176.3" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−R$ 3.856</text>
+      <line x1="46" y1="155.0" x2="428" y2="155.0" stroke="#8493A5" stroke-width="1"/>
+    </svg>
+                  </div>
+                  <p class="vpanel__nota">Entradas menos saídas de cada mês. Novembro ficou negativo por R$ 42.000 de compra de equipamentos.</p>
+                </figure>
+                <figure class="vchart">
+                  <figcaption><h4>Em que nível o caixa ficou</h4></figcaption>
+                  <div class="vchart__scroll">
+                    <svg viewBox="0 0 440 250" role="img" aria-labelledby="vg-sld-t">
+      <title id="vg-sld-t">Saldo de caixa no fim de cada mês, de out/2025 a set/2026</title>
+      <line x1="46" y1="198.0" x2="428" y2="198.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="202.0" text-anchor="end" class="vsvg__tick">0</text>
+      <line x1="46" y1="140.7" x2="428" y2="140.7" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="144.7" text-anchor="end" class="vsvg__tick">400</text>
+      <line x1="46" y1="83.3" x2="428" y2="83.3" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="87.3" text-anchor="end" class="vsvg__tick">800</text>
+      <line x1="46" y1="26.0" x2="428" y2="26.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="38" y="30.0" text-anchor="end" class="vsvg__tick">1.200</text>
+      <text x="38" y="13" text-anchor="end" class="vsvg__unit">R$ mil</text>
+      <polyline points="46.0,75.1 80.7,75.6 115.5,71.1 150.2,67.0 184.9,61.8 219.6,57.0 254.4,51.4 289.1,45.7 323.8,37.5 358.5,31.7 393.3,28.2 428.0,26.3" fill="none" stroke="#2C5691" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="46.0" cy="75.1" r="9" fill="transparent"><title>out/25 · Saldo de caixa R$ 857.464</title></circle>
+      <text x="46.0" y="234" text-anchor="middle" class="vsvg__tick">out/25</text>
+      <circle cx="80.7" cy="75.6" r="9" fill="transparent"><title>nov/25 · Saldo de caixa R$ 853.608</title></circle>
+      <circle cx="115.5" cy="71.1" r="9" fill="transparent"><title>dez/25 · Saldo de caixa R$ 885.435</title></circle>
+      <text x="115.5" y="234" text-anchor="middle" class="vsvg__tick">dez/25</text>
+      <circle cx="150.2" cy="67.0" r="9" fill="transparent"><title>jan/26 · Saldo de caixa R$ 914.178</title></circle>
+      <circle cx="184.9" cy="61.8" r="9" fill="transparent"><title>fev/26 · Saldo de caixa R$ 950.066</title></circle>
+      <text x="184.9" y="234" text-anchor="middle" class="vsvg__tick">fev/26</text>
+      <circle cx="219.6" cy="57.0" r="9" fill="transparent"><title>mar/26 · Saldo de caixa R$ 983.875</title></circle>
+      <circle cx="254.4" cy="51.4" r="9" fill="transparent"><title>abr/26 · Saldo de caixa R$ 1.022.551</title></circle>
+      <text x="254.4" y="234" text-anchor="middle" class="vsvg__tick">abr/26</text>
+      <circle cx="289.1" cy="45.7" r="9" fill="transparent"><title>mai/26 · Saldo de caixa R$ 1.062.852</title></circle>
+      <circle cx="323.8" cy="37.5" r="9" fill="transparent"><title>jun/26 · Saldo de caixa R$ 1.119.466</title></circle>
+      <text x="323.8" y="234" text-anchor="middle" class="vsvg__tick">jun/26</text>
+      <circle cx="358.5" cy="31.7" r="9" fill="transparent"><title>jul/26 · Saldo de caixa R$ 1.160.100</title></circle>
+      <circle cx="393.3" cy="28.2" r="9" fill="transparent"><title>ago/26 · Saldo de caixa R$ 1.184.764</title></circle>
+      <text x="393.3" y="234" text-anchor="middle" class="vsvg__tick">ago/26</text>
+      <circle cx="428.0" cy="26.3" r="9" fill="transparent"><title>set/26 · Saldo de caixa R$ 1.197.839</title></circle>
+      <circle cx="428.0" cy="26.3" r="4.5" fill="#2C5691" stroke="#fff" stroke-width="2"/>
+      <text x="422.0" y="43.3" text-anchor="end" class="vsvg__val" fill="#2C5691">R$ 1.197.839</text>
+      <line x1="46" y1="198" x2="428" y2="198" stroke="#8493A5" stroke-width="1"/>
+    </svg>
+                  </div>
+                  <p class="vpanel__nota">Saldo no fim de cada mês. Eixo a partir de zero, para que a variação não pareça maior do que é.</p>
+                </figure>
+              </div>
+
+              <h4 class="vpanel__h">Capital de giro em setembro/2026</h4>
+              <ul class="vtiles">
+                <li><span>Contas a receber</span><strong>R$ 639.600</strong><small>em aberto</small></li>
+                <li><span>Contas a pagar</span><strong>R$ 334.769</strong><small>em aberto</small></li>
+                <li><span>Necessidade de capital de giro</span><strong>R$ 304.831</strong><small>a receber − a pagar</small></li>
+                <li><span>Prazo médio de recebimento</span><strong>41 dias</strong><small>era 33 em out/2025</small></li>
+                <li><span>Prazo médio de pagamento</span><strong>29 dias</strong><small>era 31 em out/2025</small></li>
+                <li><span>Ciclo financeiro</span><strong>12 dias</strong><small>recebimento − pagamento</small></li>
+                <li><span>Inadimplência</span><strong>1,9%</strong><small>vencidos há mais de 30 dias</small></li>
+                <li><span>Dívida bancária</span><strong>R$ 224.000</strong><small>amortização de R$ 8.000/mês</small></li>
+              </ul>
+              <p class="vpanel__nota">
+                O ciclo financeiro é calculado sem prazo de estoque — a Futebol Inc SaaS não tem estoque.
+                Quando a empresa tem, o Vision diz isso na própria tela em vez de omitir.
+              </p>
+
+              <details class="vtable__wrap">
+                <summary>Ver os números dos 12 meses</summary>
+                <div class="vtable__scroll">
+                  <table class="vtable">
+                    <caption>Resultado e caixa por mês fechado — Futebol Inc SaaS (fictícia). Valores em reais.</caption>
+                    <thead>
+                      <tr><th scope="col">Mês</th><th scope="col">Receita líquida</th><th scope="col">Despesas totais</th><th scope="col">EBITDA</th><th scope="col">Lucro líquido</th><th scope="col">Margem líquida</th><th scope="col">Fluxo de caixa</th><th scope="col">Saldo de caixa</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><th scope="row">out/25</th><td>332.112</td><td>238.110</td><td>94.002</td><td>53.284</td><td>16,0%</td><td>37.464</td><td>857.464</td></tr>
+                      <tr><th scope="row">nov/25</th><td>340.603</td><td>242.160</td><td>98.443</td><td>57.092</td><td>16,8%</td><td>−3.856</td><td>853.608</td></tr>
+                      <tr><th scope="row">dez/25</th><td>329.281</td><td>243.359</td><td>85.922</td><td>45.934</td><td>13,9%</td><td>31.827</td><td>885.435</td></tr>
+                      <tr><th scope="row">jan/26</th><td>352.869</td><td>249.910</td><td>102.959</td><td>60.158</td><td>17,0%</td><td>28.743</td><td>914.178</td></tr>
+                      <tr><th scope="row">fev/26</th><td>361.360</td><td>253.660</td><td>107.700</td><td>64.205</td><td>17,8%</td><td>35.888</td><td>950.066</td></tr>
+                      <tr><th scope="row">mar/26</th><td>379.287</td><td>269.711</td><td>109.576</td><td>64.348</td><td>17,0%</td><td>33.809</td><td>983.875</td></tr>
+                      <tr><th scope="row">abr/26</th><td>387.778</td><td>275.861</td><td>111.917</td><td>66.031</td><td>17,0%</td><td>38.676</td><td>1.022.551</td></tr>
+                      <tr><th scope="row">mai/26</th><td>395.326</td><td>279.761</td><td>115.565</td><td>69.164</td><td>17,5%</td><td>40.301</td><td>1.062.852</td></tr>
+                      <tr><th scope="row">jun/26</th><td>403.818</td><td>286.612</td><td>117.206</td><td>70.192</td><td>17,4%</td><td>56.614</td><td>1.119.466</td></tr>
+                      <tr><th scope="row">jul/26</th><td>416.083</td><td>314.262</td><td>101.821</td><td>53.172</td><td>12,8%</td><td>40.634</td><td>1.160.100</td></tr>
+                      <tr><th scope="row">ago/26</th><td>426.462</td><td>332.012</td><td>94.450</td><td>44.973</td><td>10,5%</td><td>24.664</td><td>1.184.764</td></tr>
+                      <tr><th scope="row">set/26</th><td>441.558</td><td>346.313</td><td>95.245</td><td>44.284</td><td>10,0%</td><td>13.075</td><td>1.197.839</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </section>
+
+            <!-- ---------- Controladoria ---------- -->
+            <section class="vpanel" role="tabpanel" id="vp-ctrl" aria-labelledby="vt-ctrl" tabindex="0" hidden>
+              <p class="vpanel__q">Por que está assim?</p>
+
+              <figure class="vchart">
+                <figcaption><h4>Da receita bruta ao lucro líquido — setembro/2026</h4></figcaption>
+                <div class="vchart__scroll vchart__scroll--wide">
+                  <svg viewBox="0 0 920 352" role="img" aria-labelledby="vg-dre-t">
+      <title id="vg-dre-t">Caminho da receita bruta até o lucro líquido em setembro de 2026</title>
+      <line x1="56" y1="272.0" x2="904" y2="272.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="46" y="276.0" text-anchor="end" class="vsvg__tick">0</text>
+      <line x1="56" y1="213.0" x2="904" y2="213.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="46" y="217.0" text-anchor="end" class="vsvg__tick">120</text>
+      <line x1="56" y1="154.0" x2="904" y2="154.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="46" y="158.0" text-anchor="end" class="vsvg__tick">240</text>
+      <line x1="56" y1="95.0" x2="904" y2="95.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="46" y="99.0" text-anchor="end" class="vsvg__tick">360</text>
+      <line x1="56" y1="36.0" x2="904" y2="36.0" stroke="#DFE5EC" stroke-width="1"/>
+      <text x="46" y="40.0" text-anchor="end" class="vsvg__tick">480</text>
+      <text x="46" y="22" text-anchor="end" class="vsvg__unit">R$ mil</text>
+      <path d="M68 272.0 L68 45.9 Q68 41.9 72 41.9 L117.0909090909091 41.9 Q121.0909090909091 41.9 121.0909090909091 45.9 L121.0909090909091 272.0 Z" fill="#2C5691"><title>Receita bruta R$ 468.000</title></path>
+      <text x="94.5" y="33.9" text-anchor="middle" class="vsvg__val" fill="#2C5691">468.000</text>
+      <text x="94.5" y="292" text-anchor="middle" class="vsvg__cat">Receita</text>
+      <text x="94.5" y="305" text-anchor="middle" class="vsvg__cat">bruta</text>
+      <path d="M145.0909090909091 54.9 L145.0909090909091 45.9 Q145.0909090909091 41.9 149.0909090909091 41.9 L194.1818181818182 41.9 Q198.1818181818182 41.9 198.1818181818182 45.9 L198.1818181818182 54.9 Z" fill="#B35C2E"><title>Deduções −R$ 26.442</title></path>
+      <text x="171.6" y="33.9" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−26.442</text>
+      <text x="171.6" y="292" text-anchor="middle" class="vsvg__cat">Deduções</text>
+      <path d="M222.1818181818182 272.0 L222.1818181818182 58.9 Q222.1818181818182 54.9 226.1818181818182 54.9 L271.27272727272725 54.9 Q275.27272727272725 54.9 275.27272727272725 58.9 L275.27272727272725 272.0 Z" fill="#2C5691"><title>Receita líquida R$ 441.558</title></path>
+      <text x="248.7" y="46.9" text-anchor="middle" class="vsvg__val" fill="#2C5691">441.558</text>
+      <text x="248.7" y="292" text-anchor="middle" class="vsvg__cat">Receita</text>
+      <text x="248.7" y="305" text-anchor="middle" class="vsvg__cat">líquida</text>
+      <path d="M299.27272727272725 112.4 L299.27272727272725 58.9 Q299.27272727272725 54.9 303.27272727272725 54.9 L348.3636363636364 54.9 Q352.3636363636364 54.9 352.3636363636364 58.9 L352.3636363636364 112.4 Z" fill="#B35C2E"><title>Custos variáveis −R$ 117.013</title></path>
+      <text x="325.8" y="46.9" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−117.013</text>
+      <text x="325.8" y="292" text-anchor="middle" class="vsvg__cat">Custos</text>
+      <text x="325.8" y="305" text-anchor="middle" class="vsvg__cat">variáveis</text>
+      <path d="M376.3636363636364 272.0 L376.3636363636364 116.4 Q376.3636363636364 112.4 380.3636363636364 112.4 L425.4545454545455 112.4 Q429.4545454545455 112.4 429.4545454545455 116.4 L429.4545454545455 272.0 Z" fill="#2C5691"><title>Lucro bruto R$ 324.545</title></path>
+      <text x="402.9" y="104.4" text-anchor="middle" class="vsvg__val" fill="#2C5691">324.545</text>
+      <text x="402.9" y="292" text-anchor="middle" class="vsvg__cat">Lucro</text>
+      <text x="402.9" y="305" text-anchor="middle" class="vsvg__cat">bruto</text>
+      <path d="M453.4545454545455 225.2 L453.4545454545455 116.4 Q453.4545454545455 112.4 457.4545454545455 112.4 L502.5454545454546 112.4 Q506.5454545454546 112.4 506.5454545454546 116.4 L506.5454545454546 225.2 Z" fill="#B35C2E"><title>Despesas operacionais −R$ 229.300</title></path>
+      <text x="480.0" y="104.4" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−229.300</text>
+      <text x="480.0" y="292" text-anchor="middle" class="vsvg__cat">Despesas</text>
+      <text x="480.0" y="305" text-anchor="middle" class="vsvg__cat">operacionais</text>
+      <path d="M530.5454545454545 272.0 L530.5454545454545 229.2 Q530.5454545454545 225.2 534.5454545454545 225.2 L579.6363636363636 225.2 Q583.6363636363636 225.2 583.6363636363636 229.2 L583.6363636363636 272.0 Z" fill="#2C5691"><title>EBITDA R$ 95.245</title></path>
+      <text x="557.1" y="217.2" text-anchor="middle" class="vsvg__val" fill="#2C5691">95.245</text>
+      <text x="557.1" y="292" text-anchor="middle" class="vsvg__cat">EBITDA</text>
+      <path d="M607.6363636363636 229.1 L607.6363636363636 229.1 Q607.6363636363636 225.2 611.5205303030302 225.2 L656.843106060606 225.2 Q660.7272727272727 225.2 660.7272727272727 229.1 L660.7272727272727 229.1 Z" fill="#B35C2E"><title>Depre- ciação −R$ 7.900</title></path>
+      <text x="634.2" y="217.2" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−7.900</text>
+      <text x="634.2" y="292" text-anchor="middle" class="vsvg__cat">Depre-</text>
+      <text x="634.2" y="305" text-anchor="middle" class="vsvg__cat">ciação</text>
+      <path d="M684.7272727272727 229.1 L684.7272727272727 229.1 Q684.7272727272727 226.2 687.6069643939394 226.2 L734.9384901515152 226.2 Q737.8181818181819 226.2 737.8181818181819 229.1 L737.8181818181819 229.1 Z" fill="#00968F"><title>Resultado financeiro R$ 5.857</title></path>
+      <text x="711.3" y="218.2" text-anchor="middle" class="vsvg__val" fill="#00968F">5.857</text>
+      <text x="711.3" y="292" text-anchor="middle" class="vsvg__cat">Resultado</text>
+      <text x="711.3" y="305" text-anchor="middle" class="vsvg__cat">financeiro</text>
+      <path d="M761.8181818181819 250.2 L761.8181818181819 230.2 Q761.8181818181819 226.2 765.8181818181819 226.2 L810.909090909091 226.2 Q814.909090909091 226.2 814.909090909091 230.2 L814.909090909091 250.2 Z" fill="#B35C2E"><title>Impostos s/ lucro −R$ 48.918</title></path>
+      <text x="788.4" y="218.2" text-anchor="middle" class="vsvg__val" fill="#B35C2E">−48.918</text>
+      <text x="788.4" y="292" text-anchor="middle" class="vsvg__cat">Impostos</text>
+      <text x="788.4" y="305" text-anchor="middle" class="vsvg__cat">s/ lucro</text>
+      <path d="M838.909090909091 272.0 L838.909090909091 254.2 Q838.909090909091 250.2 842.909090909091 250.2 L888.0000000000001 250.2 Q892.0000000000001 250.2 892.0000000000001 254.2 L892.0000000000001 272.0 Z" fill="#00968F"><title>Lucro líquido R$ 44.284</title></path>
+      <text x="865.5" y="242.2" text-anchor="middle" class="vsvg__val" fill="#00968F">44.284</text>
+      <text x="865.5" y="292" text-anchor="middle" class="vsvg__cat">Lucro</text>
+      <text x="865.5" y="305" text-anchor="middle" class="vsvg__cat">líquido</text>
+      <line x1="121.1" y1="41.9" x2="145.1" y2="41.9" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="275.3" y1="54.9" x2="299.3" y2="54.9" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="429.5" y1="112.4" x2="453.5" y2="112.4" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="583.6" y1="225.2" x2="607.6" y2="225.2" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="660.7" y1="225.2" x2="684.7" y2="225.2" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="737.8" y1="226.2" x2="761.8" y2="226.2" stroke="#8493A5" stroke-width="1" opacity=".5"/>
+      <line x1="56" y1="272" x2="904" y2="272" stroke="#8493A5" stroke-width="1"/>
+    </svg>
+                </div>
+              </figure>
+
+              <div class="vtable__scroll">
+                <table class="vtable vtable--dre">
+                  <caption>DRE gerencial de setembro/2026, com o mês anterior ao lado. Valores em reais.</caption>
+                  <thead>
+                    <tr><th scope="col">Linha</th><th scope="col">set/2026</th><th scope="col">% da receita líquida</th><th scope="col">ago/2026</th><th scope="col">Variação</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr class="is-forte"><th scope="row">Receita bruta</th><td>468.000</td><td>106,0%</td><td>452.000</td><td>+3,5%</td></tr>
+                    <tr><th scope="row">(−) Deduções sobre a receita</th><td>−26.442</td><td>−6,0%</td><td>−25.538</td><td>+3,5%</td></tr>
+                    <tr class="is-forte"><th scope="row">Receita líquida</th><td>441.558</td><td>100,0%</td><td>426.462</td><td>+3,5%</td></tr>
+                    <tr><th scope="row">(−) Custos variáveis</th><td>−117.013</td><td>−26,5%</td><td>−113.012</td><td>+3,5%</td></tr>
+                    <tr class="is-forte"><th scope="row">Lucro bruto</th><td>324.545</td><td>73,5%</td><td>313.450</td><td>+3,5%</td></tr>
+                    <tr><th scope="row">(−) Despesas operacionais</th><td>−229.300</td><td>−51,9%</td><td>−219.000</td><td>+4,7%</td></tr>
+                    <tr class="is-forte"><th scope="row">EBITDA</th><td>95.245</td><td>21,6%</td><td>94.450</td><td>+0,8%</td></tr>
+                    <tr><th scope="row">(−) Depreciação e amortização</th><td>−7.900</td><td>−1,8%</td><td>−7.900</td><td>0,0%</td></tr>
+                    <tr><th scope="row">(+/−) Resultado financeiro</th><td>5.857</td><td>1,3%</td><td>5.601</td><td>+4,6%</td></tr>
+                    <tr><th scope="row">(−) IRPJ e CSLL</th><td>−48.918</td><td>−11,1%</td><td>−47.178</td><td>+3,7%</td></tr>
+                    <tr class="is-resultado"><th scope="row">Lucro líquido</th><td>44.284</td><td>10,0%</td><td>44.973</td><td>−1,5%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="vpanel__nota">
+                A variação das linhas negativas é lida em módulo: “+8,2%” em despesa operacional
+                significa que a despesa subiu 8,2%, não que o resultado melhorou.
+              </p>
+
+              <h4 class="vpanel__h">Orçado x realizado — setembro/2026</h4>
+              <div class="vtable__scroll">
+                <table class="vtable">
+                  <caption>Orçamento aprovado para setembro/2026 contra o realizado. Valores em reais.</caption>
+                  <thead>
+                    <tr><th scope="col">Linha</th><th scope="col">Orçado</th><th scope="col">Realizado</th><th scope="col">Variação</th><th scope="col">%</th><th scope="col">Efeito no resultado</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Receita bruta</th><td>455.000</td><td>468.000</td><td>+13.000</td><td>+2,9%</td><td><span class="vflag is-bom">Favorável</span></td></tr>
+                    <tr><th scope="row">Deduções sobre a receita</th><td>25.708</td><td>26.442</td><td>+734</td><td>+2,9%</td><td><span class="vflag is-ruim">Desfavorável</span></td></tr>
+                    <tr><th scope="row">Custos variáveis</th><td>113.500</td><td>117.013</td><td>+3.513</td><td>+3,1%</td><td><span class="vflag is-ruim">Desfavorável</span></td></tr>
+                    <tr><th scope="row">Despesas operacionais</th><td>212.000</td><td>229.300</td><td>+17.300</td><td>+8,2%</td><td><span class="vflag is-ruim">Desfavorável</span></td></tr>
+                    <tr><th scope="row">EBITDA</th><td>103.792</td><td>95.245</td><td>−8.547</td><td>−8,2%</td><td><span class="vflag is-ruim">Desfavorável</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="vpanel__nota">
+                A receita veio +2,9% acima do orçado
+                e o EBITDA veio −8,2% abaixo. São dois fatos do mesmo mês:
+                a leitura de causa é trabalho do consultor, não do software.
+              </p>
+
+              <h4 class="vpanel__h">De onde saem as despesas operacionais</h4>
+              <ul class="vrank">
+                <li>
+                  <span class="vrank__nome">Pessoal<em>média abr–jun: R$ 104.300</em></span>
+                  <span class="vbar"><span class="vbar__fill" style="width:100.0%;background:#2C5691"></span></span>
+                  <span class="vrank__val"><strong>R$ 131.800</strong><span class="is-ruim">+26,4%</span></span>
+                </li>
+                <li>
+                  <span class="vrank__nome">Comercial e marketing<em>média abr–jun: R$ 33.167</em></span>
+                  <span class="vbar"><span class="vbar__fill" style="width:40.0%;background:#2C5691"></span></span>
+                  <span class="vrank__val"><strong>R$ 52.700</strong><span class="is-ruim">+58,9%</span></span>
+                </li>
+                <li>
+                  <span class="vrank__nome">Tecnologia e ferramentas<em>média abr–jun: R$ 14.900</em></span>
+                  <span class="vbar"><span class="vbar__fill" style="width:14.2%;background:#2C5691"></span></span>
+                  <span class="vrank__val"><strong>R$ 18.700</strong><span class="is-ruim">+25,5%</span></span>
+                </li>
+                <li>
+                  <span class="vrank__nome">Administrativas<em>média abr–jun: R$ 13.733</em></span>
+                  <span class="vbar"><span class="vbar__fill" style="width:12.4%;background:#2C5691"></span></span>
+                  <span class="vrank__val"><strong>R$ 16.300</strong><span class="is-ruim">+18,7%</span></span>
+                </li>
+                <li>
+                  <span class="vrank__nome">Ocupação<em>média abr–jun: R$ 9.800</em></span>
+                  <span class="vbar"><span class="vbar__fill" style="width:7.4%;background:#2C5691"></span></span>
+                  <span class="vrank__val"><strong>R$ 9.800</strong><span class="is-neutro">0,0%</span></span>
+                </li>
+              </ul>
+              <p class="vpanel__nota">
+                Rubricas ordenadas por tamanho, comparadas com a média do trimestre anterior.
+                Soma: R$ 229.300 — exatamente a linha de despesas operacionais do DRE acima.
+              </p>
+            </section>
+
+            <!-- ---------- Insights ---------- -->
+            <section class="vpanel" role="tabpanel" id="vp-ins" aria-labelledby="vt-ins" tabindex="0" hidden>
+              <p class="vpanel__q">O que devo olhar primeiro?</p>
+              <p class="vpanel__intro">
+                Regras determinísticas, sem IA. Uma regra sem os dados que ela exige não é executada —
+                e o produto publica o que faltou em vez de arredondar a conclusão.
+              </p>
+
+              <div class="vins">
+                <article class="vins__card is-alerta">
+                  <header>
+                    <span class="vchip vchip--alerta">Alerta</span>
+                    <span class="vins__conf">Confiança: alta</span>
+                  </header>
+                  <h5>A margem líquida recuou em três meses fechados seguidos</h5>
+                  <p>Entre junho e setembro de 2026 a margem líquida passou de 17,4% para 10,0%, uma queda de 7,4 p.p. No mesmo intervalo a receita líquida cresceu 9,3%.</p>
+                  <p class="vins__sub">O que observamos</p>
+                  <ul class="vins__ev">
+                    <li><span>Margem líquida · jun/2026</span><strong>17,4%</strong><em></em></li>
+                    <li><span>Margem líquida · set/2026</span><strong>10,0%</strong><em>−7,4 p.p.</em></li>
+                    <li><span>Receita líquida · set/2026</span><strong>R$ 441.558</strong><em>+9,3%</em></li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>jun/2026 a set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>1.482 lançamentos classificados no mês de referência</dd></div>
+                    <div><dt>Regra</dt><dd>MARGEM_EM_QUEDA · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Comparar o ritmo de contratação do trimestre com a entrada de receita recorrente.</p>
+                </article>
+                <article class="vins__card is-atencao">
+                  <header>
+                    <span class="vchip vchip--atencao">Atenção</span>
+                    <span class="vins__conf">Confiança: alta</span>
+                  </header>
+                  <h5>As despesas operacionais cresceram acima da receita no trimestre</h5>
+                  <p>No trimestre jul–set/2026 as despesas operacionais cresceram 23,6% contra o trimestre anterior, enquanto a receita bruta cresceu 8,2%. A diferença é de 15,4 p.p.</p>
+                  <p class="vins__sub">O que observamos</p>
+                  <ul class="vins__ev">
+                    <li><span>Despesas operacionais · jul–set</span><strong>R$ 652.300</strong><em>+23,6%</em></li>
+                    <li><span>Receita bruta · jul–set</span><strong>R$ 1.361.000</strong><em>+8,2%</em></li>
+                    <li><span>Despesas operacionais · abr–jun</span><strong>R$ 527.700</strong><em></em></li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>abr/2026 a set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>6 meses fechados · regime de competência</dd></div>
+                    <div><dt>Regra</dt><dd>DESPESA_CRESCE_ACIMA_RECEITA · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Avaliar quais rubricas sustentam o aumento e quais são reversíveis no curto prazo.</p>
+                </article>
+                <article class="vins__card is-atencao">
+                  <header>
+                    <span class="vchip vchip--atencao">Atenção</span>
+                    <span class="vins__conf">Confiança: alta</span>
+                  </header>
+                  <h5>Um cliente responde por 31,6% da receita</h5>
+                  <p>Em setembro de 2026, o Grupo Esportivo Albatroz respondeu por 31,6% da receita bruta — mais do que os dois clientes seguintes somados (27,4%). O Vision mostra a concentração; o que fazer com ela é decisão comercial.</p>
+                  <p class="vins__sub">O que observamos · receita bruta de set/2026 por cliente</p>
+                  <ul class="vrank vrank--mini">
+              <li>
+                <span class="vrank__nome">Grupo Esportivo Albatroz<em>rede de 4 clubes</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:100.0%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>31,6%</strong>R$ 148.000</span>
+              </li>
+              <li>
+                <span class="vrank__nome">Federação Paulista de Futsal<em>contrato anual</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:48.6%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>15,4%</strong>R$ 72.000</span>
+              </li>
+              <li>
+                <span class="vrank__nome">Clube Atlético Rio Verde<em>Série B</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:37.8%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>12,0%</strong>R$ 56.000</span>
+              </li>
+              <li>
+                <span class="vrank__nome">Esporte Clube Vila Nova<em>Série C</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:27.7%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>8,8%</strong>R$ 41.000</span>
+              </li>
+              <li>
+                <span class="vrank__nome">Centro de Formação Base Sul<em>categorias de base</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:22.3%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>7,1%</strong>R$ 33.000</span>
+              </li>
+              <li>
+                <span class="vrank__nome">Outros 46 clientes<em>ticket médio menor</em></span>
+                <span class="vbar"><span class="vbar__fill" style="width:79.7%;background:#2C5691"></span></span>
+                <span class="vrank__val"><strong>25,2%</strong>R$ 118.000</span>
+              </li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>51 clientes ativos no mês</dd></div>
+                    <div><dt>Regra</dt><dd>CONCENTRACAO_CLIENTES · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Definir um teto de participação por cliente para os próximos contratos.</p>
+                </article>
+                <article class="vins__card is-atencao">
+                  <header>
+                    <span class="vchip vchip--atencao">Atenção</span>
+                    <span class="vins__conf">Confiança: média</span>
+                  </header>
+                  <h5>O prazo médio de recebimento subiu ao longo do ano</h5>
+                  <p>O prazo médio de recebimento passou de 33 para 41 dias entre out/2025 e set/2026, com o prazo de pagamento estável em 29 dias. O ciclo financeiro foi de 2 para 12 dias.</p>
+                  <p class="vins__sub">O que observamos</p>
+                  <ul class="vins__ev">
+                    <li><span>Prazo médio de recebimento</span><strong>41 dias</strong><em>+8 dias</em></li>
+                    <li><span>Prazo médio de pagamento</span><strong>29 dias</strong><em>−2 dias</em></li>
+                    <li><span>Ciclo financeiro</span><strong>12 dias</strong><em>+10 dias</em></li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>out/2025 a set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>12 meses fechados · títulos emitidos e liquidados</dd></div>
+                    <div><dt>Regra</dt><dd>CICLO_FINANCEIRO_PIORANDO · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Verificar se o alongamento vem de clientes novos ou da régua de cobrança.</p>
+                </article>
+                <article class="vins__card is-oportunidade">
+                  <header>
+                    <span class="vchip vchip--oportunidade">Oportunidade</span>
+                    <span class="vins__conf">Confiança: alta</span>
+                  </header>
+                  <h5>R$ 171.600 parados entre o vencimento e o recebimento</h5>
+                  <p>Os títulos de setembro venceram em média em 30 dias e foram recebidos em 41 dias: 11 dias de diferença sobre o prazo que a própria empresa concede em contrato.</p>
+                  <p class="vins__sub">O que observamos</p>
+                  <ul class="vins__ev">
+                    <li><span>Vencimento médio concedido</span><strong>30 dias</strong><em></em></li>
+                    <li><span>Prazo médio de recebimento</span><strong>41 dias</strong><em>+11 dias</em></li>
+                    <li><span>Contas a receber em aberto</span><strong>R$ 639.600</strong><em></em></li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>títulos recebidos no mês · vencimento x liquidação</dd></div>
+                    <div><dt>Regra</dt><dd>PRAZO_RECEBIMENTO_MELHORAVEL · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Antecipar a régua de cobrança para antes do vencimento e medir o efeito em 60 dias.</p>
+                </article>
+                <article class="vins__card is-oportunidade">
+                  <header>
+                    <span class="vchip vchip--oportunidade">Oportunidade</span>
+                    <span class="vins__conf">Confiança: alta</span>
+                  </header>
+                  <h5>Comercial e marketing cresceu muito acima da própria receita</h5>
+                  <p>A rubrica Comercial e marketing fechou setembro em R$ 52.700, 58,9% acima da média do trimestre anterior, enquanto a receita bruta cresceu 11,6% na mesma comparação.</p>
+                  <p class="vins__sub">O que observamos</p>
+                  <ul class="vins__ev">
+                    <li><span>Comercial e marketing · set/2026</span><strong>R$ 52.700</strong><em>+58,9%</em></li>
+                    <li><span>Média abr–jun/2026</span><strong>R$ 33.167</strong><em></em></li>
+                    <li><span>Peso na despesa operacional</span><strong>23,0%</strong><em></em></li>
+                  </ul>
+                  <dl class="vins__meta">
+                    <div><dt>Período analisado</dt><dd>abr/2026 a set/2026</dd></div>
+                    <div><dt>Base de cálculo</dt><dd>rubrica classificada · regime de competência</dd></div>
+                    <div><dt>Regra</dt><dd>REDUCAO_CUSTO_POSSIVEL · v1.0.0</dd></div>
+                  </dl>
+                  <p class="vins__rec"><strong>O que recomendamos avaliar:</strong> Revisar as três maiores linhas da rubrica antes do próximo ciclo de investimento.</p>
+                </article>
+              </div>
+
+              <p class="vpanel__nota">
+                Nenhum apontamento afirma causa. O de margem mostra dois fatos e a relação de tempo
+                entre eles; concluir que um causou o outro é decisão de quem conhece o negócio.
+              </p>
+            </section>
+
+            <!-- ---------- Simulações ---------- -->
+            <section class="vpanel" role="tabpanel" id="vp-sim" aria-labelledby="vt-sim" tabindex="0" hidden>
+              <p class="vpanel__q">E se eu fizer isso?</p>
+
+              <div class="vsim"
+                   data-rl="441558"
+                   data-lb="324545"
+                   data-opex="229300"
+                   data-da="7900"
+                   data-fin="5857"
+                   data-imp="48918"
+                   data-caixa="1197839"
+                   data-fixo="219953">
+                <header class="vsim__top">
+                  <p class="vsim__tag">Simulação · não é uma previsão</p>
+                  <label class="vsim__ctrl" for="vsim-range">
+                    Redução nas despesas operacionais
+                    <input type="range" id="vsim-range" min="0" max="12" step="1" value="6">
+                    <output id="vsim-pct" for="vsim-range">6%</output>
+                  </label>
+                  <p class="vsim__resumo" aria-live="polite">
+                    Neste cenário, o lucro líquido do mês vai de <b>R$ 44.284</b> para
+                    <b id="vsim-r-lucro">R$ 58.042</b>, e a margem líquida, de
+                    <b>10,0%</b> para <b id="vsim-r-margem">13,1%</b>.
+                  </p>
+                </header>
+
+                <div class="vsim__cols">
+                  <div class="vsim__col">
+                    <h5>Situação atual · setembro/2026</h5>
+                    <ul>
+                      <li><span>Receita líquida</span><strong>R$ 441.558</strong></li>
+                      <li><span>Despesas operacionais</span><strong>R$ 229.300</strong></li>
+                      <li><span>EBITDA</span><strong>R$ 95.245</strong></li>
+                      <li><span>Lucro líquido</span><strong>R$ 44.284</strong></li>
+                      <li><span>Margem líquida</span><strong>10,0%</strong></li>
+                      <li><span>Meses de caixa</span><strong>5,4</strong></li>
+                    </ul>
+                  </div>
+                  <div class="vsim__col vsim__col--cen">
+                    <h5>Cenário simulado</h5>
+                    <ul>
+                      <li><span>Receita líquida</span><strong>R$ 441.558</strong><em>mantida</em></li>
+                      <li><span>Despesas operacionais</span><strong id="vsim-opex">R$ 215.542</strong><em id="vsim-eco">−R$ 13.758</em></li>
+                      <li><span>EBITDA</span><strong id="vsim-ebitda">R$ 109.003</strong><em id="vsim-debitda">+R$ 13.758</em></li>
+                      <li><span>Lucro líquido</span><strong id="vsim-lucro">R$ 58.042</strong><em id="vsim-dlucro">+R$ 13.758</em></li>
+                      <li><span>Margem líquida</span><strong id="vsim-margem">13,1%</strong><em id="vsim-dmargem">+3,1 p.p.</em></li>
+                      <li><span>Meses de caixa</span><strong id="vsim-meses">5,8</strong><em id="vsim-dmeses">+0,4 meses</em></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="vsim__notas">
+                  <div>
+                    <h5>Premissas da simulação</h5>
+                    <ul>
+                      <li>Base de cálculo: mês fechado de setembro/2026</li>
+                      <li>Redução aplicada sobre R$ 229.300 de despesas operacionais</li>
+                      <li>Receita mantida constante</li>
+                      <li>Lucro presumido: o imposto incide sobre a receita, então a economia chega inteira ao lucro</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>Não considerado</h5>
+                    <ul>
+                      <li>Sazonalidade</li>
+                      <li>Custo de implementar a mudança</li>
+                      <li>Efeito sobre a capacidade da equipe</li>
+                      <li>Prazos de rescisão contratual</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <p class="vsim__realoc">
+                  <strong>E se esse recurso fosse para outro lugar?</strong>
+                  A economia equivale a <b id="vsim-ano">R$ 165.096</b> em doze meses. Aplicada em marketing,
+                  para se pagar em doze meses ela precisaria gerar <b id="vsim-necessaria">R$ 224.620</b>
+                  de receita líquida adicional. O Vision mostra o retorno <em>necessário</em> — não estima o retorno provável,
+                  porque isso ele não tem como saber.
+                </p>
+                <p class="vpanel__nota">Este cenário assume que a redução não afeta a receita.</p>
+              </div>
+            </section>
+
+            <!-- ---------- Plano de Ação ---------- -->
+            <section class="vpanel" role="tabpanel" id="vp-plano" aria-labelledby="vt-plano" tabindex="0" hidden>
+              <p class="vpanel__q">Qual é o meu próximo passo?</p>
+              <p class="vpanel__intro">
+                Nenhum item existe sem um apontamento real por trás. Prioridade e indicador vêm do
+                apontamento; o esforço é o único campo que o consultor da IMV preenche, porque é o
+                único que o sistema não tem como calcular.
+              </p>
+
+              <ul class="vplano">
+                <li>
+                  <div class="vplano__cab">
+                    <strong>Revisar as três maiores linhas de Comercial e marketing</strong>
+                    <span class="vflag is-andamento">Em andamento</span>
+                  </div>
+                  <dl>
+                    <div><dt>Origem</dt><dd>REDUCAO_CUSTO_POSSIVEL · set/2026</dd></div>
+                    <div><dt>Prioridade</dt><dd>Alta</dd></div>
+                    <div><dt>Esforço</dt><dd>Médio</dd></div>
+                    <div><dt>Indicador</dt><dd>Margem líquida</dd></div>
+                    <div><dt>Prazo</dt><dd>30/10/2026</dd></div>
+                  </dl>
+                </li>
+                <li>
+                  <div class="vplano__cab">
+                    <strong>Reavaliar o ritmo de contratações do trimestre</strong>
+                    <span class="vflag is-andamento">Em andamento</span>
+                  </div>
+                  <dl>
+                    <div><dt>Origem</dt><dd>DESPESA_CRESCE_ACIMA_RECEITA · set/2026</dd></div>
+                    <div><dt>Prioridade</dt><dd>Alta</dd></div>
+                    <div><dt>Esforço</dt><dd>Médio</dd></div>
+                    <div><dt>Indicador</dt><dd>EBITDA</dd></div>
+                    <div><dt>Prazo</dt><dd>14/11/2026</dd></div>
+                  </dl>
+                </li>
+                <li>
+                  <div class="vplano__cab">
+                    <strong>Antecipar a régua de cobrança para antes do vencimento</strong>
+                    <span class="vflag is-afazer">A fazer</span>
+                  </div>
+                  <dl>
+                    <div><dt>Origem</dt><dd>PRAZO_RECEBIMENTO_MELHORAVEL · set/2026</dd></div>
+                    <div><dt>Prioridade</dt><dd>Média</dd></div>
+                    <div><dt>Esforço</dt><dd>Baixo</dd></div>
+                    <div><dt>Indicador</dt><dd>Prazo médio de recebimento</dd></div>
+                    <div><dt>Prazo</dt><dd>07/11/2026</dd></div>
+                  </dl>
+                </li>
+                <li>
+                  <div class="vplano__cab">
+                    <strong>Definir teto de participação por cliente nos novos contratos</strong>
+                    <span class="vflag is-afazer">A fazer</span>
+                  </div>
+                  <dl>
+                    <div><dt>Origem</dt><dd>CONCENTRACAO_CLIENTES · set/2026</dd></div>
+                    <div><dt>Prioridade</dt><dd>Alta</dd></div>
+                    <div><dt>Esforço</dt><dd>Alto</dd></div>
+                    <div><dt>Indicador</dt><dd>Receita bruta</dd></div>
+                    <div><dt>Prazo</dt><dd>28/11/2026</dd></div>
+                  </dl>
+                </li>
+              </ul>
+            </section>
+
+          </div>
+        </div>
+
+        <div class="vclose reveal">
+          <p>
+            É isso que a sua empresa passa a ver todo mês — com os números dela, conferidos antes
+            de virar indicador.
+          </p>
+          <a href="#agendar" class="btn btn--primary btn--lg">Quero ver minha empresa no IMV Vision</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 07 · DOIS CAMINHOS DE ENTRADA ===================== -->
     <section class="sec sec--dark" id="caminhos">
       <div class="wrap">
         <header class="sechead sechead--center reveal">
@@ -475,7 +1441,7 @@
       </div>
     </section>
 
-    <!-- ===================== 07 · PARA QUEM É A IMV ===================== -->
+    <!-- ===================== 08 · PARA QUEM É A IMV ===================== -->
     <section class="sec sec--alt" id="para-quem">
       <div class="wrap">
         <header class="sechead sechead--center reveal">
@@ -498,7 +1464,7 @@
       </div>
     </section>
 
-    <!-- ===================== 08 · CONTATO / AGENDAMENTO ===================== -->
+    <!-- ===================== 09 · CONTATO / AGENDAMENTO ===================== -->
     <section class="sec" id="agendar">
       <div class="wrap">
         <header class="sechead sechead--center reveal">
@@ -596,6 +1562,7 @@
           <li><a href="#camadas">BPO Financeiro</a></li>
           <li><a href="#camadas">Controladoria</a></li>
           <li><a href="#camadas">CFO as a Service</a></li>
+          <li><a href="#vision">IMV Vision (software)</a></li>
         </ul>
       </nav>
 
@@ -1031,6 +1998,6 @@
   </script>
   <!-- ======================= FIM DA CAMPANHA FE26 ======================= -->
 
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js?v=3" defer></script>
 </body>
 </html>
