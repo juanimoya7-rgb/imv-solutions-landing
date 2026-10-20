@@ -264,9 +264,12 @@ a:hover { color: var(--gold); }
   gap: var(--s-5);
 }
 
-.nav { display: flex; align-items: center; gap: var(--s-7); }
-.nav__list { display: flex; align-items: center; gap: var(--s-6); }
+.nav { display: flex; align-items: center; gap: var(--s-6); }
+.nav__list { display: flex; align-items: center; gap: var(--s-5); }
+/* nowrap: sem isto os rotulos de duas palavras quebram em duas linhas e
+   o menu fica com os textos em alturas diferentes. */
 .nav__list a {
+  white-space: nowrap;
   position: relative;
   font-family: var(--f-display);
   font-size: .92rem;
@@ -810,9 +813,9 @@ a:hover { color: var(--gold); }
 }
 
 /* Menu recolhido: com o acesso ao IMV Vision e o link da seção do software o
-   cabeçalho não cabe numa linha abaixo de ~1200px, então o menu vira hambúrguer
+   cabeçalho não cabe numa linha abaixo de ~1240px, então o menu vira hambúrguer
    antes do resto do layout. */
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
   .nav {
     position: fixed;
     inset: var(--head-h) 0 auto;
@@ -1716,7 +1719,25 @@ html:not(.js) .vpanel[hidden] { display: block; border-top: 1px solid var(--line
 
 @media (max-width: 860px) {
   .vfeat, .vlayers, .vflow__steps { grid-template-columns: 1fr; }
-  .vdemo__meta { gap: var(--s-5); }
+
+  /* No telefone os tres dados nao cabem lado a lado sem sobrar um orfao numa
+     segunda linha. Viram pares rotulo-valor, um por linha, todos alinhados. */
+  .vdemo__bar { gap: var(--s-4); }
+  .vdemo__meta {
+    width: 100%;
+    display: grid;
+    gap: 0;
+    padding-top: var(--s-3);
+    border-top: 1px solid rgba(255, 255, 255, .14);
+  }
+  .vdemo__meta li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: 5px 0;
+  }
+  .vdemo__meta span { font-size: .66rem; }
   .vpanel { padding: var(--s-5) var(--s-4); }
   .vtabs { padding: 0 var(--s-4); }
   .vdemo__bar, .vdemo__aviso { padding-inline: var(--s-4); }
@@ -1724,6 +1745,12 @@ html:not(.js) .vpanel[hidden] { display: block; border-top: 1px solid var(--line
   .vrank li .vbar { grid-column: 1 / -1; order: 3; }
   .vpilares li { grid-template-columns: 1fr 34px; }
   .vpilares li .vbar { grid-column: 1 / -1; order: 3; }
+}
+
+/* Abaixo de 375px o rotulo mais longo da barra nao cabe ao lado do valor:
+   volta a ficar em cima dele, para nada quebrar no meio. */
+@media (max-width: 374px) {
+  .vdemo__meta li { display: grid; gap: 0; }
 }
 
 @media (max-width: 640px) {

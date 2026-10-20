@@ -64,7 +64,7 @@ const CONFIG = {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 1200) closeNav();
+      if (window.innerWidth > 1240) closeNav();
     });
   }
 
