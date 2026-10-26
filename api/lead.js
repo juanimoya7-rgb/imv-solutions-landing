@@ -1,10 +1,9 @@
 /**
- * POST /api/lead-fe26
+ * POST /api/lead
  *
- * Recebe o formulário de /fe26 (QR do cordão na Feira do Empreendedor 2026)
- * e grava o lead no Attio: cria ou atualiza a empresa em `companies`,
- * adiciona à lista "FE26 - Feira do Empreendedor" e deixa uma nota com
- * tudo o que o formulário capturou.
+ * Recebe o formulário de contato do site e grava o lead no Attio: cria ou
+ * atualiza a empresa em `companies` e deixa uma nota com tudo o que o
+ * formulário capturou.
  *
  * Variável de ambiente obrigatória no Vercel:
  *   ATTIO_API_KEY   — token da API do Attio (Settings → Developers → Access tokens)
@@ -16,14 +15,14 @@
 'use strict';
 
 var ATTIO = 'https://api.attio.com/v2';
-var LISTA_FE26 = 'f24522cc-0ff5-4036-ac16-7dfbb6034867';
+
+/* Sem lista: o workspace ainda nao tem uma para leads do site. Quando
+   existir, basta voltar a adicionar a entrada depois de gravar o registro. */
 
 /* IDs das opções já existentes no workspace da IMV. */
 var OPCAO = {
   estado_respondeu: '867abe63-a105-4c0c-ae94-902757e291b5',  // Respondio
   resultado_interessado: '0aff20b0-8362-4e27-b268-46a3663ff571',  // Respondeu - interessado
-  canal_presencial: 'a250113d-bdaf-4fc5-92a0-9c66820cc009',  // Presencial
-  tanda_presencial: '59c9cc41-39e8-4a7c-8a12-d48d2efb9e7a',  // Presencial
   tipo_prospecto: '8de6565b-e274-4f9a-99ef-735cc84523f3',  // Prospecto
   oferta_a_definir: 'dc5c473b-7550-4017-929d-1ff8f4524d4e',  // A definir
   objecao_nenhuma: '584d5a41-8eea-4ee5-a0d2-17d87e2e429f',  // Nenhuma registrada
@@ -208,9 +207,7 @@ module.exports = async function handler(req, res) {
   var dor = limpa(corpo.dor, 200);
   var dorDetalhe = limpa(corpo.dor_detalhe, 800);
   var faturamento = limpa(corpo.faturamento, 60);
-  var origem = limpa(corpo.origem, 60) || 'qr-cracha';
-  var diaFeira = limpa(corpo.dia_feira, 10);
-  var captadoPor = limpa(corpo.captado_por, 40);
+  var origem = limpa(corpo.origem, 60) || 'site';
 
   if (nome.length < 2 || empresa.length < 2 || !telefone) {
     return res.status(400).json({ ok: false, erro: 'campos_obrigatorios' });
@@ -224,11 +221,12 @@ module.exports = async function handler(req, res) {
     contato_nome: [{ value: nome }],
     whatsapp: [{ original_phone_number: telefone }],
     gancho_comercial: [{ value: gancho.slice(0, 900) }],
-    fonte_dados: [{ value: 'Formulário /fe26 — ' + origem + (diaFeira ? ' (dia ' + diaFeira + ')' : '') }],
+    fonte_dados: [{ value: 'Formulário do site — ' + origem }],
     estado_prospeccion: [{ option: OPCAO.estado_respondeu }],
     resultado_ultimo_contacto: [{ option: OPCAO.resultado_interessado }],
-    canal_primer_contacto: [{ option: OPCAO.canal_presencial }],
-    tanda_origen: [{ option: OPCAO.tanda_presencial }],
+    /* canal_primer_contacto e tanda_origen ficam vazios de proposito: nenhuma
+       das opcoes existentes no Attio descreve "veio pelo site", e preencher
+       com Presencial seria dado errado. Criada a opcao, e so voltar aqui. */
     tipo_registro: [{ option: OPCAO.tipo_prospecto }],
     oferta_objetivo: [{ option: OPCAO.oferta_a_definir }],
     objecion_principal: [{ option: OPCAO.objecao_nenhuma }],
@@ -290,20 +288,8 @@ module.exports = async function handler(req, res) {
 
     var extras = [];
 
-    extras.push(
-      chamaAttio('/lists/' + LISTA_FE26 + '/entries', 'POST', {
-        data: {
-          parent_object: 'companies',
-          parent_record_id: recordId,
-          entry_values: {}
-        }
-      }, chave).catch(function (e) {
-        console.error('falha ao adicionar na lista FE26:', e.message);
-      })
-    );
-
     var linhas = [
-      'Lead capturado no formulário /fe26 (Feira do Empreendedor 2026).',
+      'Lead capturado no formulário de contato do site.',
       '',
       'Contato: ' + nome,
       'Empresa: ' + empresa,
@@ -313,12 +299,10 @@ module.exports = async function handler(req, res) {
       dorDetalhe ? 'Nas palavras dele: "' + dorDetalhe + '"' : null,
       'Faturamento mensal: ' + (faturamento || 'não informado'),
       '',
-      'Origem do QR: ' + origem,
-      diaFeira ? 'Dia da feira: ' + diaFeira + '/10' : null,
-      captadoPor ? 'Captado por: ' + captadoPor : null,
+      'Origem: ' + origem,
       'Enviado em: ' + (limpa(corpo.enviado_em, 40) || new Date().toISOString()),
       '',
-      'Próximo passo: chamar no WhatsApp hoje à noite com dois horários para o diagnóstico.'
+      'Próximo passo: chamar no WhatsApp com dois horários para o diagnóstico.'
     ].filter(Boolean);
 
     extras.push(
@@ -326,7 +310,7 @@ module.exports = async function handler(req, res) {
         data: {
           parent_object: 'companies',
           parent_record_id: recordId,
-          title: 'FE26 — ' + empresa + ' (' + (dor || 'sem dor declarada') + ')',
+          title: 'Site — ' + empresa + ' (' + (dor || 'sem dor declarada') + ')',
           format: 'plaintext',
           content: linhas.join('\n')
         }

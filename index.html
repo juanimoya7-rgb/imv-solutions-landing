@@ -1613,16 +1613,17 @@
   </a>
 
   <!-- ===================================================================
-       CAMPANHA FE26 — Feira do Empreendedor Sebrae, 19 a 22/10/2026.
-       Bloco autocontido (estilo + markup + script), prefixado .fe26-
+       CAPTAÇÃO DE CONTATO — convite ao diagnóstico financeiro gratuito.
+       Bloco autocontido (estilo + markup + script), prefixado .contato-
        para não colidir com assets/css/styles.css.
-       REMOVER DEPOIS DE 22/10/2026: apagar daqui até o fim deste bloco.
+       Nasceu como anúncio de feira; hoje é permanente e aparece uma vez
+       por visitante. O ritmo está em assets/js/contato.js.
        =================================================================== -->
   <style>
-  .fe26-overlay{
-    --fe26-navy:#1D3B66; --fe26-deep:#001430; --fe26-tinta:#0F1A28;
-    --fe26-ouro:#C9A227; --fe26-cinza:#4E5D70; --fe26-claro:#8493A5;
-    --fe26-linha:#D8DEE6; --fe26-branco:#fff;
+  .contato-overlay{
+    --contato-navy:#1D3B66; --contato-deep:#001430; --contato-tinta:#0F1A28;
+    --contato-ouro:#C9A227; --contato-cinza:#4E5D70; --contato-claro:#8493A5;
+    --contato-linha:#D8DEE6; --contato-branco:#fff;
 
     position:fixed; inset:0; z-index:9999;
     display:flex; align-items:center; justify-content:center;
@@ -1630,152 +1631,152 @@
     background:rgba(0,20,48,.58);
     opacity:0; transition:opacity .22s ease;
   }
-  .fe26-overlay.is-open{opacity:1}
-  .fe26-overlay[hidden]{display:none !important}
+  .contato-overlay.is-open{opacity:1}
+  .contato-overlay[hidden]{display:none !important}
 
-  .fe26-card{
+  .contato-card{
     position:relative; width:100%; max-width:27rem;
     max-height:min(88vh,44rem);
     max-height:min(88dvh,44rem);
     overflow:hidden;                       /* só o corpo rola; o X fica sempre à vista */
     display:flex; flex-direction:column;
-    background:var(--fe26-branco); color:var(--fe26-tinta);
-    border-top:3px solid var(--fe26-ouro);
+    background:var(--contato-branco); color:var(--contato-tinta);
+    border-top:3px solid var(--contato-ouro);
     box-shadow:0 18px 50px rgba(0,20,48,.4);
     font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;
     font-size:15px; line-height:1.5;
     transform:translateY(10px); transition:transform .22s ease;
   }
-  .fe26-overlay.is-open .fe26-card{transform:none}
+  .contato-overlay.is-open .contato-card{transform:none}
 
-  .fe26-fechar{
+  .contato-fechar{
     position:absolute; top:10px; right:10px; z-index:2;
     width:34px; height:34px; display:grid; place-items:center;
-    background:var(--fe26-branco); color:var(--fe26-cinza);
-    border:1px solid var(--fe26-linha); border-radius:50%;
+    background:var(--contato-branco); color:var(--contato-cinza);
+    border:1px solid var(--contato-linha); border-radius:50%;
     font-size:19px; line-height:1; cursor:pointer; padding:0;
   }
-  .fe26-fechar:hover{color:var(--fe26-tinta); border-color:var(--fe26-claro)}
+  .contato-fechar:hover{color:var(--contato-tinta); border-color:var(--contato-claro)}
 
-  #fe26-conteudo{display:flex; flex-direction:column; flex:1; min-height:0}
-  .fe26-topo{background:var(--fe26-deep); padding:18px 20px 16px; flex:none}
-  .fe26-selo{
+  #contato-conteudo{display:flex; flex-direction:column; flex:1; min-height:0}
+  .contato-topo{background:var(--contato-deep); padding:18px 20px 16px; flex:none}
+  .contato-selo{
     display:inline-block;
     font-family:'Archivo',sans-serif; font-size:.62rem; font-weight:700;
     letter-spacing:.12em; text-transform:uppercase;
-    color:var(--fe26-deep); background:var(--fe26-ouro);
+    color:var(--contato-deep); background:var(--contato-ouro);
     padding:4px 8px; border-radius:2px;
   }
-  .fe26-topo h2{
+  .contato-topo h2{
     font-family:'Archivo',sans-serif; font-size:1.3rem; font-weight:800;
-    line-height:1.12; letter-spacing:-.01em; color:var(--fe26-branco);
+    line-height:1.12; letter-spacing:-.01em; color:var(--contato-branco);
     margin:11px 0 0;
   }
-  .fe26-topo p{font-size:.92rem; color:rgba(255,255,255,.76); margin:7px 0 0}
+  .contato-topo p{font-size:.92rem; color:rgba(255,255,255,.76); margin:7px 0 0}
 
-  .fe26-corpo{padding:18px 20px 20px; flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain}
-  .fe26-grid{display:grid; grid-template-columns:1fr 1fr; gap:11px}
-  .fe26-campo{margin-bottom:11px; min-width:0}
-  .fe26-campo label{
+  .contato-corpo{padding:18px 20px 20px; flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain}
+  .contato-grid{display:grid; grid-template-columns:1fr 1fr; gap:11px}
+  .contato-campo{margin-bottom:11px; min-width:0}
+  .contato-campo label{
     display:block; font-family:'Archivo',sans-serif;
     font-size:.68rem; font-weight:600; letter-spacing:.07em;
-    text-transform:uppercase; color:var(--fe26-cinza); margin-bottom:4px;
+    text-transform:uppercase; color:var(--contato-cinza); margin-bottom:4px;
   }
-  .fe26-card input,.fe26-card select{
-    width:100%; font-family:inherit; font-size:.98rem; color:var(--fe26-tinta);
-    background:var(--fe26-branco); border:1px solid var(--fe26-linha);
+  .contato-card input,.contato-card select{
+    width:100%; font-family:inherit; font-size:.98rem; color:var(--contato-tinta);
+    background:var(--contato-branco); border:1px solid var(--contato-linha);
     border-radius:3px; padding:10px 11px; margin:0;
   }
-  .fe26-card input:focus-visible,.fe26-card select:focus-visible,
-  .fe26-card button:focus-visible{outline:2px solid var(--fe26-navy); outline-offset:1px}
-  .fe26-erro{color:#B3261E; font-size:.8rem; margin:4px 0 0}
+  .contato-card input:focus-visible,.contato-card select:focus-visible,
+  .contato-card button:focus-visible{outline:2px solid var(--contato-navy); outline-offset:1px}
+  .contato-erro{color:#B3261E; font-size:.8rem; margin:4px 0 0}
 
-  .fe26-enviar{
+  .contato-enviar{
     width:100%; font-family:'Archivo',sans-serif; font-size:1rem; font-weight:700;
-    color:var(--fe26-branco); background:var(--fe26-deep);
+    color:var(--contato-branco); background:var(--contato-deep);
     border:none; border-radius:3px; padding:14px; cursor:pointer; margin-top:5px;
   }
-  .fe26-enviar:disabled{opacity:.6; cursor:progress}
-  .fe26-aviso{font-size:.78rem; color:var(--fe26-claro); text-align:center; margin:9px 0 0}
+  .contato-enviar:disabled{opacity:.6; cursor:progress}
+  .contato-aviso{font-size:.78rem; color:var(--contato-claro); text-align:center; margin:9px 0 0}
 
-  .fe26-ok{padding:26px 20px 24px; text-align:center; overflow-y:auto}
-  .fe26-ok h2{font-family:'Archivo',sans-serif; font-size:1.35rem; font-weight:800; margin:0}
-  .fe26-ok p{color:var(--fe26-cinza); margin:9px 0 0; font-size:.95rem}
-  .fe26-ok .fe26-enviar{margin-top:18px}
+  .contato-ok{padding:26px 20px 24px; text-align:center; overflow-y:auto}
+  .contato-ok h2{font-family:'Archivo',sans-serif; font-size:1.35rem; font-weight:800; margin:0}
+  .contato-ok p{color:var(--contato-cinza); margin:9px 0 0; font-size:.95rem}
+  .contato-ok .contato-enviar{margin-top:18px}
 
   @media (max-width:560px){
-    .fe26-overlay{align-items:flex-end; padding:0}
+    .contato-overlay{align-items:flex-end; padding:0}
     /* 84px garantidos de site à mostra em cima. dvh desconta a barra do navegador,
        que o vh do celular ignora — é o que fazia o cartão passar da tela. */
-    .fe26-card{
+    .contato-card{
       max-width:none;
       max-height:calc(100vh - 84px);
       max-height:calc(100dvh - 84px);
     }
-    .fe26-grid{grid-template-columns:1fr; gap:0}
+    .contato-grid{grid-template-columns:1fr; gap:0}
 
     /* cabeçalho mais curto, para sobrar tela para o formulário */
-    .fe26-topo{padding:14px 18px 13px}
-    .fe26-topo h2{font-size:1.12rem; margin-top:9px}
-    .fe26-topo p{font-size:.86rem; margin-top:5px}
+    .contato-topo{padding:14px 18px 13px}
+    .contato-topo h2{font-size:1.12rem; margin-top:9px}
+    .contato-topo p{font-size:.86rem; margin-top:5px}
     /* a barra de gestos do iPhone come o fim do cartão sem o safe-area */
-    .fe26-corpo{padding:14px 18px calc(18px + env(safe-area-inset-bottom, 0px))}
-    .fe26-ok{padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
-    .fe26-campo{margin-bottom:9px}
-    .fe26-campo label{font-size:.65rem; margin-bottom:3px}
+    .contato-corpo{padding:14px 18px calc(18px + env(safe-area-inset-bottom, 0px))}
+    .contato-ok{padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
+    .contato-campo{margin-bottom:9px}
+    .contato-campo label{font-size:.65rem; margin-bottom:3px}
 
     /* 16px é o mínimo que evita o zoom automático do Safari ao focar o campo */
-    .fe26-card input,.fe26-card select{font-size:16px; padding:10px 11px}
-    .fe26-enviar{padding:15px; font-size:1.02rem}
-    .fe26-aviso{margin-top:8px}
+    .contato-card input,.contato-card select{font-size:16px; padding:10px 11px}
+    .contato-enviar{padding:15px; font-size:1.02rem}
+    .contato-aviso{margin-top:8px}
 
-    .fe26-fechar{width:38px; height:38px; font-size:21px; top:8px; right:8px}
+    .contato-fechar{width:38px; height:38px; font-size:21px; top:8px; right:8px}
   }
   @media (prefers-reduced-motion:reduce){
-    .fe26-overlay,.fe26-card{transition:none}
+    .contato-overlay,.contato-card{transition:none}
   }
   </style>
 
-  <div class="fe26-overlay" id="fe26-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fe26-titulo">
-    <div class="fe26-card" id="fe26-card">
-      <button type="button" class="fe26-fechar" id="fe26-fechar" aria-label="Fechar">&times;</button>
+  <div class="contato-overlay" id="contato-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="contato-titulo">
+    <div class="contato-card" id="contato-card">
+      <button type="button" class="contato-fechar" id="contato-fechar" aria-label="Fechar">&times;</button>
 
-      <div id="fe26-conteudo">
-        <div class="fe26-topo">
-          <span class="fe26-selo">FE26 · Feira do Empreendedor Sebrae</span>
-          <h2 id="fe26-titulo">Você sabe quanto sua empresa lucrou no mês passado?</h2>
+      <div id="contato-conteudo">
+        <div class="contato-topo">
+          <span class="contato-selo">Diagnóstico financeiro gratuito</span>
+          <h2 id="contato-titulo">Você sabe quanto sua empresa lucrou no mês passado?</h2>
           <p>Deixe seu contato e a Isabella marca um diagnóstico financeiro de 45 minutos, online e sem custo.</p>
         </div>
 
-        <div class="fe26-corpo">
-          <form id="fe26-form" novalidate>
-            <div class="fe26-grid">
-              <div class="fe26-campo">
-                <label for="fe26-nome">Nome</label>
-                <input type="text" id="fe26-nome" autocomplete="name" enterkeyhint="next">
+        <div class="contato-corpo">
+          <form id="contato-form" novalidate>
+            <div class="contato-grid">
+              <div class="contato-campo">
+                <label for="contato-nome">Nome</label>
+                <input type="text" id="contato-nome" autocomplete="name" enterkeyhint="next">
               </div>
-              <div class="fe26-campo">
-                <label for="fe26-telefone">Telefone</label>
-                <input type="tel" id="fe26-telefone" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" enterkeyhint="next">
-              </div>
-            </div>
-            <p class="fe26-erro" id="fe26-erro-contato" hidden>Preencha nome e telefone com DDD.</p>
-
-            <div class="fe26-grid">
-              <div class="fe26-campo">
-                <label for="fe26-email">E-mail</label>
-                <input type="text" id="fe26-email" inputmode="email" autocomplete="email" enterkeyhint="next">
-              </div>
-              <div class="fe26-campo">
-                <label for="fe26-empresa">Empresa</label>
-                <input type="text" id="fe26-empresa" autocomplete="organization" enterkeyhint="next">
+              <div class="contato-campo">
+                <label for="contato-telefone">Telefone</label>
+                <input type="tel" id="contato-telefone" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" enterkeyhint="next">
               </div>
             </div>
-            <p class="fe26-erro" id="fe26-erro-dados" hidden>Preencha um e-mail válido e o nome da empresa.</p>
+            <p class="contato-erro" id="contato-erro-contato" hidden>Preencha nome e telefone com DDD.</p>
 
-            <div class="fe26-campo">
-              <label for="fe26-dor">Qual é a sua maior dor financeira hoje?</label>
-              <select id="fe26-dor">
+            <div class="contato-grid">
+              <div class="contato-campo">
+                <label for="contato-email">E-mail</label>
+                <input type="text" id="contato-email" inputmode="email" autocomplete="email" enterkeyhint="next">
+              </div>
+              <div class="contato-campo">
+                <label for="contato-empresa">Empresa</label>
+                <input type="text" id="contato-empresa" autocomplete="organization" enterkeyhint="next">
+              </div>
+            </div>
+            <p class="contato-erro" id="contato-erro-dados" hidden>Preencha um e-mail válido e o nome da empresa.</p>
+
+            <div class="contato-campo">
+              <label for="contato-dor">Qual é a sua maior dor financeira hoje?</label>
+              <select id="contato-dor">
                 <option value="">Selecione</option>
                 <option value="Não sei se a empresa dá lucro">Não sei se a empresa dá lucro</option>
                 <option value="O caixa aperta e não sei por quê">O caixa aperta e não sei por quê</option>
@@ -1784,12 +1785,12 @@
                 <option value="Preciso de crédito e não tenho relatório">Preciso de crédito e não tenho relatório</option>
                 <option value="Quero crescer e não sei se o financeiro aguenta">Quero crescer e não sei se o financeiro aguenta</option>
               </select>
-              <p class="fe26-erro" id="fe26-erro-dor" hidden>Escolha uma opção.</p>
+              <p class="contato-erro" id="contato-erro-dor" hidden>Escolha uma opção.</p>
             </div>
 
-            <div class="fe26-campo">
-              <label for="fe26-faturamento">Faturamento mensal</label>
-              <select id="fe26-faturamento">
+            <div class="contato-campo">
+              <label for="contato-faturamento">Faturamento mensal</label>
+              <select id="contato-faturamento">
                 <option value="">Prefiro não informar</option>
                 <option value="Até R$ 20 mil">Até R$ 20 mil</option>
                 <option value="R$ 20 mil a R$ 50 mil">R$ 20 mil a R$ 50 mil</option>
@@ -1799,24 +1800,24 @@
               </select>
             </div>
 
-            <input type="text" id="fe26-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+            <input type="text" id="contato-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 
-            <button type="submit" class="fe26-enviar" id="fe26-btn">Quero meu diagnóstico gratuito</button>
-            <p class="fe26-aviso">Leva 40 segundos. Sem spam, sem ligação de vendas.</p>
+            <button type="submit" class="contato-enviar" id="contato-btn">Quero meu diagnóstico gratuito</button>
+            <p class="contato-aviso">Leva 40 segundos. Sem spam, sem ligação de vendas.</p>
           </form>
         </div>
       </div>
 
-      <div class="fe26-ok" id="fe26-ok" hidden>
-        <h2 id="fe26-ok-titulo">Recebido!</h2>
-        <p id="fe26-ok-texto">A Isabella entra em contato pelo WhatsApp com dois horários para o seu diagnóstico.</p>
-        <button type="button" class="fe26-enviar" id="fe26-ok-btn">Conhecer a IMV Solutions</button>
+      <div class="contato-ok" id="contato-ok" hidden>
+        <h2 id="contato-ok-titulo">Recebido!</h2>
+        <p id="contato-ok-texto">A Isabella entra em contato pelo WhatsApp com dois horários para o seu diagnóstico.</p>
+        <button type="button" class="contato-enviar" id="contato-ok-btn">Conhecer a IMV Solutions</button>
       </div>
     </div>
   </div>
 
-  <script src="assets/js/fe26.js?v=1" defer></script>
-  <!-- ======================= FIM DA CAMPANHA FE26 ======================= -->
+  <script src="assets/js/contato.js?v=1" defer></script>
+  <!-- ==================== FIM DA CAPTAÇÃO DE CONTATO ==================== -->
 
   <script src="assets/js/main.js?v=6" defer></script>
 </body>

@@ -147,10 +147,10 @@ hash del único script inline que queda, en el `<head>`:
 node -e "console.log(require('crypto').createHash('sha256').update('document.documentElement.classList.add(\"js\");').digest('base64'))"
 ```
 
-Por eso el script de la campaña FE26 salió del HTML a `assets/js/fe26.js`: cualquier
-script nuevo va en un archivo propio, nunca inline, y la CSP no se toca.
+Por eso el script del popup de contacto salió del HTML a `assets/js/contato.js`:
+cualquier script nuevo va en un archivo propio, nunca inline, y la CSP no se toca.
 
-### `/api/lead-fe26`
+### `/api/lead`
 
 Escribe en el CRM sin autenticar al visitante, así que tiene tres puertas:
 
@@ -190,3 +190,30 @@ registro **A de `@`** de `216.198.79.1` a `76.76.21.21`. Vercel sigue aceptando 
 para dominios raíz.
 
 **No tocar los MX** — son los del correo de Google Workspace.
+
+## Captación de contacto (popup)
+
+`assets/js/contato.js` + el bloque `.contato-*` al final de `index.html`. Nació como
+anuncio de la Feira do Empreendedor 2026 y quedó como captación permanente.
+
+**Cuándo aparece:** lo que pase primero — que el visitante scrollee el 35% de la página,
+o que lleve 30 segundos en ella. No aparece si ya dejó el contacto, y si lo cerró sin
+llenarlo no vuelve por 30 días. Todo eso vive en `localStorage`, así que es por
+navegador, no por persona.
+
+Antes abría a los 900 ms **en cada visita**: era correcto para los 4 días de la feria,
+no para un sitio permanente.
+
+**Lo que escribe en Attio** (`api/lead.js`): crea o actualiza la empresa en `companies`
+y le cuelga una nota. Dos cosas quedaron deliberadamente fuera:
+
+- **No se agrega a ninguna lista.** La única que había era "FE26 - Feira do
+  Empreendedor", específica de la feria. Cuando exista una lista para leads del sitio,
+  se vuelve a enganchar en `api/lead.js`.
+- **`Canal 1er contacto` y `Tanda origen` quedan vacíos.** Las opciones que existen en
+  Attio son Email, WhatsApp, Instagram, Llamada, Presencial, LinkedIn e Indicação:
+  ninguna dice "vino por el sitio", y poner Presencial sería dato falso. Si se crea la
+  opción, es una línea en cada uno.
+
+Mientras tanto el campo de texto `fonte_dados` guarda `Formulário do site — <origem>`,
+donde `origem` sale del parámetro `?src=` de la URL.
