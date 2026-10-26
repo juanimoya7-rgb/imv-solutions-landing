@@ -114,10 +114,70 @@ function procuraPorWhatsapp(telefone, chave) {
   return tenta(0);
 }
 
+/* ---------------------------------------------------------------- *
+ * Defesas do endpoint. Ele escreve direto no CRM sem autenticar o
+ * visitante, entao as duas portas sao: de onde veio e com que ritmo.
+ * ---------------------------------------------------------------- */
+
+var HOSTS_PERMITIDOS = ['imv.solutions', 'www.imv.solutions'];
+
+/* So aceita POST disparado de uma pagina da IMV. O navegador manda Origin
+   em todo POST, inclusive same-origin, entao um site de terceiros que tente
+   enviar o formulario em nome do visitante cai aqui. Sem Origin usavel,
+   o Referer serve de segunda leitura. */
+function origemConfiavel(req) {
+  var host = String(req.headers['host'] || '').toLowerCase();
+  var bruto = req.headers['origin'] || req.headers['referer'] || '';
+  if (!bruto) return false;
+  var vindo;
+  try { vindo = new URL(bruto).host.toLowerCase(); } catch (e) { return false; }
+  return vindo === host || HOSTS_PERMITIDOS.indexOf(vindo) !== -1;
+}
+
+/* Limite por IP, melhor esforco: cada instancia da funcao guarda a sua
+   janela em memoria. Nao e uma barreira dura, e sim um teto contra envio
+   automatizado. O teto e alto de proposito: num estande a feira inteira
+   sai pelo mesmo IP do wi-fi do pavilhao. */
+var JANELA_MS = 10 * 60 * 1000;
+var TETO_JANELA = 20;
+var janelas = new Map();
+
+function dentroDoTeto(ip) {
+  if (!ip) return true;
+  var agora = Date.now();
+  var marcas = (janelas.get(ip) || []).filter(function (t) { return agora - t < JANELA_MS; });
+  if (marcas.length >= TETO_JANELA) {
+    janelas.set(ip, marcas);
+    return false;
+  }
+  marcas.push(agora);
+  janelas.set(ip, marcas);
+  if (janelas.size > 500) {           // teto de memoria da instancia
+    janelas.clear();
+    janelas.set(ip, marcas);
+  }
+  return true;
+}
+
+function ipDe(req) {
+  var xff = String(req.headers['x-forwarded-for'] || '');
+  return xff.split(',')[0].trim() || null;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false, erro: 'metodo_nao_permitido' });
+  }
+
+  if (!origemConfiavel(req)) {
+    console.error('POST recusado, origem fora da lista:', req.headers['origin'] || req.headers['referer'] || '(sem origem)');
+    return res.status(403).json({ ok: false, erro: 'origem_nao_permitida' });
+  }
+
+  if (!dentroDoTeto(ipDe(req))) {
+    res.setHeader('Retry-After', '600');
+    return res.status(429).json({ ok: false, erro: 'muitos_envios' });
   }
 
   var chave = process.env.ATTIO_API_KEY;
@@ -127,6 +187,9 @@ module.exports = async function handler(req, res) {
   }
 
   var corpo = req.body;
+  if (typeof corpo === 'string' && corpo.length > 20000) {   // corpo gigante nao e lead
+    return res.status(413).json({ ok: false, erro: 'corpo_grande_demais' });
+  }
   if (typeof corpo === 'string') {
     try { corpo = JSON.parse(corpo); } catch (e) { corpo = null; }
   }
@@ -279,13 +342,8 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     console.error('erro ao gravar lead no Attio:', e.message);
     // 502 faz o formulário guardar o lead no aparelho e reenviar sozinho.
-    // attio_status/detalhe são para diagnóstico: o visitante nunca os vê,
-    // o formulário só olha o código HTTP.
-    return res.status(502).json({
-      ok: false,
-      erro: 'attio_indisponivel',
-      attio_status: e.status || null,
-      detalhe: String(e.message || '').slice(0, 200)
-    });
+    // O diagnóstico fica só no log do Vercel: a mensagem do Attio pode
+    // trazer de volta o corpo da requisição, e isso não desce ao navegador.
+    return res.status(502).json({ ok: false, erro: 'attio_indisponivel' });
   }
 };

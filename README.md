@@ -116,3 +116,77 @@ secciones oscuras vivan en el mismo tono que la marca.
 ## Deploy
 
 El repo está conectado a Vercel. Cada push a `main` redespliega solo.
+
+## Seguridad (24-oct-2026)
+
+Headers enviados por `vercel.json` en todas las respuestas:
+
+| Header | Para qué |
+|---|---|
+| `Content-Security-Policy` | Solo se ejecuta JS propio + `assets.calendly.com`. iframes solo de `calendly.com`. Nadie puede embeber el sitio (`frame-ancestors 'none'`). |
+| `Strict-Transport-Security` | `max-age` 2 años **con `includeSubDomains`** |
+| `X-Frame-Options: DENY` | Anti-clickjacking para navegadores viejos |
+| `Cross-Origin-Opener-Policy` | Aísla la ventana de pestañas abiertas con `target="_blank"` |
+| `Cross-Origin-Resource-Policy` | Evita que otros sitios carguen los assets |
+| `Permissions-Policy` | Apaga cámara, micrófono, geo, pagos, USB, sensores |
+| `X-Permitted-Cross-Domain-Policies` | Bloquea políticas Flash/Acrobat heredadas |
+
+### La CSP depende de un hash — importante
+
+`script-src` incluye `'sha256-WZRJfWvsnNCPcxzZwvyhovnZGqhZaC+8gPGPRbx6wTk='`, que es el
+hash del único script inline que queda, en el `<head>`:
+
+```html
+<script>document.documentElement.classList.add("js");</script>
+```
+
+**Si ese renglón se edita, hay que recalcular el hash** o el navegador lo bloquea
+(el síntoma sería un parpadeo de estilos al cargar). Para recalcularlo:
+
+```bash
+node -e "console.log(require('crypto').createHash('sha256').update('document.documentElement.classList.add(\"js\");').digest('base64'))"
+```
+
+Por eso el script de la campaña FE26 salió del HTML a `assets/js/fe26.js`: cualquier
+script nuevo va en un archivo propio, nunca inline, y la CSP no se toca.
+
+### `/api/lead-fe26`
+
+Escribe en el CRM sin autenticar al visitante, así que tiene tres puertas:
+
+- **Origen** — solo acepta POST disparado desde `imv.solutions` / `www.imv.solutions`
+  (o desde el mismo host de la request). Un sitio de terceros no puede enviar el
+  formulario en nombre de quien lo visita.
+- **Ritmo** — 20 envíos por IP cada 10 minutos. Es a propósito un techo alto: en un
+  estand de feria todo el pabellón sale por el mismo IP del wi-fi.
+- **Tamaño** — corta cuerpos de más de 20 KB.
+
+La respuesta de error ya **no** devuelve el texto que mandó Attio: ese texto puede
+traer de vuelta el contenido de la request, y el diagnóstico queda solo en los logs
+de Vercel.
+
+La `ATTIO_API_KEY` vive únicamente en las variables de entorno de Vercel. El
+`.gitignore` nuevo evita que un `.env` termine commiteado.
+
+## DNS — el registro A del dominio raíz está roto
+
+`imv.solutions` resuelve a **un solo** registro A: `216.198.79.1`. Desde la conexión
+de casa (Boituva) esa IP **no responde**: 100% de pérdida en ping y timeout en los
+puertos 80 y 443. El traceroute muere en el borde del ISP.
+
+Por eso el sitio se veía mal o no cargaba en el computador, y bien en el celular:
+el celular sale por la red móvil, que sí llega a esa IP.
+
+Las otras IPs del mismo edge de Vercel sí responden desde esa conexión:
+
+| IP | Desde casa |
+|---|---|
+| `216.198.79.1` (la que está puesta) | timeout |
+| `76.76.21.21` | 200 OK, 16 ms |
+| `64.29.17.1` (a la que resuelve `www`) | 200 OK, 12 ms |
+
+**Arreglo:** en Squarespace DNS (los NS son `nsd1..4.squarespacedns.com`), cambiar el
+registro **A de `@`** de `216.198.79.1` a `76.76.21.21`. Vercel sigue aceptando esa IP
+para dominios raíz.
+
+**No tocar los MX** — son los del correo de Google Workspace.
